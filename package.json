@@ -26,6 +26,7 @@
 	},
 	"dependencies": {
 		"@auth/sveltekit": "^1.7.4",
+		"@sveltejs/adapter-node": "^5.2.11",
 		"arctic": "^2.3.3",
 		"bits-ui": "^0.21.16",
 		"clsx": "^2.1.1",
