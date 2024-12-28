@@ -20,6 +20,7 @@ const config = {
       $icons: "./src/icons",
       $features: "./src/features",
       $entities: "./src/entities",
+      $translations: "./src/lib/translations",
     },
   },
 };

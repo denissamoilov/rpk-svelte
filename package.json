@@ -30,10 +30,9 @@
 		"arctic": "^2.3.3",
 		"bits-ui": "^0.21.16",
 		"clsx": "^2.1.1",
-		"i18next": "^24.1.0",
 		"lucide-svelte": "^0.468.0",
-		"svelte-i18next": "^2.2.2",
 		"svelte-persisted-store": "^0.12.0",
+		"sveltekit-i18n": "^2.4.2",
 		"sveltekit-superforms": "^2.22.1",
 		"tailwind-merge": "^2.5.5",
 		"tailwind-variants": "^0.3.0"

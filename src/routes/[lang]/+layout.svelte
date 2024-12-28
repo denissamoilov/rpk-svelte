@@ -1,6 +1,6 @@
 <script>
   import '@fontsource-variable/inter';
-  import "../app.css";
+  import "../../app.css";
 
   let { children } = $props();
 </script>
