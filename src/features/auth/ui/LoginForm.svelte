@@ -21,6 +21,7 @@
     
     try {
       const response = await api(config.endpoints.auth.login, {
+        requireAuth: false,
         method: 'POST',
         body: JSON.stringify({ email, password }),
       });

@@ -15,6 +15,7 @@
 
     try {
       const response = await api(config.endpoints.auth.forgotPassword, {
+        requireAuth: false,
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

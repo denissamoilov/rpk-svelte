@@ -19,6 +19,7 @@
 
     try {
       const response = await api(config.endpoints.auth.resetPassword, {
+        requireAuth: false,
         method: 'POST',
         body: JSON.stringify({ token, password }),
       });
