@@ -1,6 +1,8 @@
 <script lang="ts">
   import { Input, Button, Separator } from "$components";
   import { Alert, AlertDescription, AlertTitle } from "$components/alert";
+  import { api } from "$lib/api";
+  import { config } from "$lib/config";
 
   let isLoading = false;
   let email = '';
@@ -12,7 +14,7 @@
     isLoading = true;
 
     try {
-      const response = await fetch(`http://localhost:5005/api/forgot-password`, {
+      const response = await api(config.endpoints.auth.forgotPassword, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

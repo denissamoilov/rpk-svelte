@@ -5,23 +5,23 @@
   import { page } from "$app/stores";
   import { goto } from '$app/navigation';
   import { userStore } from "$lib/stores/user";
+  import { api } from "$lib/api";
+  import { config } from "$lib/config";
 
   let email = '';
   let password = '';
   let errorMessage: Error = { message: '', name: '' };
   let isLoading = false;
   let lang = $page.params.lang;
+
   const handleSubmit = async (e: Event) => {
     e.preventDefault();
     isLoading = true;
     errorMessage = { message: '', name: '' };
     
     try {
-      const response = await fetch(`http://localhost:5005/api/login`, {
+      const response = await api(config.endpoints.auth.login, {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
         body: JSON.stringify({ email, password }),
       });
       

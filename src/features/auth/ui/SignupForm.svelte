@@ -3,6 +3,8 @@
   import PasswordStrengthIndicator from "./PasswordStrengthIndicator.svelte";
   import Alert from "$components/alert/alert.svelte";
   import { AlertDescription, AlertTitle } from "$components/alert";
+  import { api } from "$lib/api";
+  import { config } from "$lib/config";
 
   let email = '';
   let password = '';
@@ -19,11 +21,8 @@
     formSendSuccess = false;
     
     try {
-      const response = await fetch(`http://localhost:5005/api/verify-email`, {
+      const response = await api(config.endpoints.auth.register, {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
         body: JSON.stringify({ email, password }),
       });
       

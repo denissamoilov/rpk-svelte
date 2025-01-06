@@ -1,7 +1,9 @@
 <script lang="ts">
   import { Input, Button } from "$components";
   import { Alert, AlertDescription, AlertTitle } from "$components/alert";
-  import PasswordStrengthIndicator from "./PasswordStrengthIndicator.svelte";
+  import PasswordStrengthIndicator from "./PasswordStrengthIndicator.svelte"; 
+  import { api } from "$lib/api";
+  import { config } from "$lib/config";
   import { page } from "$app/stores";
 
   let isLoading = false;
@@ -16,12 +18,8 @@
     isLoading = true;
 
     try {
-      const response = await fetch(`http://localhost:5005/api/reset-password`, {
+      const response = await api(config.endpoints.auth.resetPassword, {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'Accept': 'application/json'
-        },
         body: JSON.stringify({ token, password }),
       });
 

@@ -1,4 +1,5 @@
 import { userStore } from "./stores/user";
+import { getApiUrl } from "./config";
 
 interface FetchOptions extends RequestInit {
   requireAuth?: boolean;
@@ -8,7 +9,7 @@ export async function api(endpoint: string, options: FetchOptions = {}) {
   const { requireAuth = true, ...fetchOptions } = options;
 
   // Add base URL
-  const url = `http://localhost:5005/api${endpoint}`;
+  const url = getApiUrl(endpoint);
 
   // Add default headers
   const headers = new Headers(fetchOptions.headers);
