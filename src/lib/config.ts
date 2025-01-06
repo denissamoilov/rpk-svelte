@@ -1,7 +1,7 @@
-import { API_URL } from "$env/static/private";
+import { PUBLIC_BACKEND_URL } from "$env/static/public";
 
 export const config = {
-  apiUrl: API_URL,
+  apiUrl: PUBLIC_BACKEND_URL,
   endpoints: {
     auth: {
       login: "/api/login",

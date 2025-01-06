@@ -1,13 +1,13 @@
 import { SvelteKitAuth } from "@auth/sveltekit";
 import GoogleAuthProvider from "@auth/sveltekit/providers/google";
-import { Google } from "arctic";
+// import { Google } from "arctic";
 import { GOOGLE_CLIENT_SECRET, GOOGLE_CLIENT_ID } from "$env/static/private";
 
-export const GoogleProvider = new Google(
-  GOOGLE_CLIENT_ID,
-  GOOGLE_CLIENT_SECRET,
-  "http://localhost:5173/login/google/callback"
-);
+// export const GoogleProvider = new Google(
+//   GOOGLE_CLIENT_ID,
+//   GOOGLE_CLIENT_SECRET,
+//   "http://localhost:5173/login/google/callback"
+// );
 
 export const { handle } = SvelteKitAuth({
   providers: [
