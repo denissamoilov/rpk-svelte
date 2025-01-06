@@ -3,6 +3,7 @@
   import { goto } from '$app/navigation';
   import { page } from '$app/stores';
   import { onMount } from 'svelte';
+  import { BackofficeHeader } from '$features';
 
   let { children } = $props();
 
@@ -21,4 +22,9 @@
   });
 </script>
 
-{@render children()}
+<div>
+  <BackofficeHeader />
+  <main class="py-4 px-6">
+    {@render children()}
+  </main>
+</div>

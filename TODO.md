@@ -60,6 +60,11 @@
 
 
 # Add token handling for API requests?
+# Add automatic token refresh before expiration?
+# Add error handling for network issues?
+# Add retry logic for failed requests?
+
+
 # Create a loading state for authentication checks?
 # Add refresh token functionality?
 # Set up automatic token refresh?

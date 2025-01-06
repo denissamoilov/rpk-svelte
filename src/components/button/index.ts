@@ -10,7 +10,7 @@ const buttonVariants = tv({
       secondary: "bg-secondary-500 text-white hover:bg-secondary-600",
       accent: "bg-accent-500 text-white hover:bg-accent-600",
       outline:
-        "border border-gray-200 bg-background hover:bg-gray-100 hover:text-gray-900",
+        "border border-gray-200 hover:bg-gray-200 hover:text-gray-900 hover:border-gray-300",
       ghost: "hover:bg-gray-200 hover:text-gray-900",
       gray: "bg-gray-100 text-gray-700 hover:bg-gray-200 border border-gray-200",
     },
