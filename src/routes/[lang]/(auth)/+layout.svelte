@@ -5,30 +5,6 @@
   import signup from '$lib/assets/signup.svg';
 
   let { children } = $props();
-  const primaryColors = [
-    { name: "Primary 100", class: "bg-primary-100" },
-    { name: "Primary 200", class: "bg-primary-200" },
-    { name: "Primary 300", class: "bg-primary-300" },
-    { name: "Primary 400", class: "bg-primary-400" },
-    { name: "Primary 500", class: "bg-primary-500" }, // Base color
-    { name: "Primary 600", class: "bg-primary-600" },
-    { name: "Primary 700", class: "bg-primary-700" },
-    { name: "Primary 800", class: "bg-primary-800" },
-    { name: "Primary 900", class: "bg-primary-900" },
-    { name: "Primary 950", class: "bg-primary-950" },
-  ];
-  const secondaryColors = [
-    { name: "Secondary 100", class: "bg-secondary-100" },
-    { name: "Secondary 200", class: "bg-secondary-200" },
-    { name: "Secondary 300", class: "bg-secondary-300" },
-    { name: "Secondary 400", class: "bg-secondary-400" },
-    { name: "Secondary 500", class: "bg-secondary-500" }, // Base color
-    { name: "Secondary 600", class: "bg-secondary-600" },
-    { name: "Secondary 700", class: "bg-secondary-700" },
-    { name: "Secondary 800", class: "bg-secondary-800" },
-    { name: "Secondary 900", class: "bg-secondary-900" },
-    { name: "Secondary 950", class: "bg-secondary-950" },
-  ];
 </script>
 
 <div class="min-h-dvh flex justify-center p-4 gap-6">
