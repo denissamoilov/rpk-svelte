@@ -5,13 +5,14 @@
   import { AlertDescription, AlertTitle } from "$components/alert";
   import { api } from "$lib/api";
   import { config } from "$lib/config";
-
+  import { page } from "$app/stores";
   let email = '';
   let password = '';
   let errorMessage: Error = { message: '', name: '' };
   let isLoading: boolean;
   export let formSendSuccess;
   export let message;
+  let lang = $page.params.lang;
 
   const handleSubmit = async (e: Event) => {
     e.preventDefault();
@@ -98,7 +99,7 @@
 
   <div class="flex flex-col gap-3">
     <Button
-      variant="outline"
+      variant="gray"
       size="lg"
     >
       Continue with Google
@@ -107,6 +108,6 @@
 
   <p class="text-center text-md">
     Already have an account?{" "}
-    <a href="/login">Login</a>
+    <a href={`/${lang}/login`}>Login</a>
   </p>
 </div> 

@@ -9,10 +9,9 @@ const buttonVariants = tv({
       primary: "bg-primary-500 text-primary-foreground hover:bg-primary-600",
       secondary: "bg-secondary-500 text-white hover:bg-secondary-600",
       accent: "bg-accent-500 text-white hover:bg-accent-600",
-      outline:
-        "border border-gray-200 hover:bg-gray-200 hover:text-gray-900 hover:border-gray-300",
+      outline: "border border-secondary-500 hover:border-secondary-400",
       ghost: "hover:bg-gray-200 hover:text-gray-900",
-      gray: "bg-gray-100 text-gray-700 hover:bg-gray-200 border border-gray-200",
+      gray: "bg-gray-100 hover:border-gray-300 border border-gray-200",
     },
     size: {
       "icon-xs": "input-xs px-1 min-w-8",

@@ -108,7 +108,7 @@
     <Separator label="Or" class="my-4" />
     <div class="flex flex-col gap-3">
       <Button
-        variant="outline"
+        variant="gray"
         size="lg"
         on:click={() => {
           signIn("google");

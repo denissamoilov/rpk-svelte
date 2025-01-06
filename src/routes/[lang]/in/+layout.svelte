@@ -22,9 +22,9 @@
   });
 </script>
 
-<div>
+<div class="p-4">
   <BackofficeHeader />
-  <main class="py-4 px-6">
+  <main class="p-4">
     {@render children()}
   </main>
 </div>
