@@ -2,15 +2,20 @@
 	import { Button as ButtonPrimitive } from "bits-ui";
 	import { type Events, type Props, buttonVariants } from "./index";
 	import { cn } from "$lib/utils";
+  import type { Icon as IconType } from "lucide-svelte";
 
-	type $$Props = Props;
-	type $$Events = Events;
-
-	let className: $$Props["class"] = undefined;
+	type $$Props = Props & { leftIcon?: typeof IconType; rightIcon?: typeof IconType};
 	export let variant: $$Props["variant"] = "primary";
 	export let size: $$Props["size"] = "md";
 	export let builders: $$Props["builders"] = [];
 	export { className as class };
+  
+	let className: $$Props["class"] = undefined;
+  let { leftIcon = undefined, rightIcon = undefined } = $$props;
+	type $$Events = Events;
+  const LeftIcon = leftIcon;
+  const RightIcon = rightIcon;
+  
 </script>
 
 <ButtonPrimitive.Root
@@ -21,6 +26,11 @@
 	on:click
 	on:keydown
 >
-  <slot name="leftIcon" />
+  {#if leftIcon}
+    <LeftIcon />
+  {/if}
 	<slot />
+  {#if rightIcon}
+    <RightIcon />
+  {/if}
 </ButtonPrimitive.Root>

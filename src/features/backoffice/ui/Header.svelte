@@ -1,8 +1,8 @@
 <script lang="ts">
-  import { Input, Button, Avatar, AvatarFallback, DropdownMenu, DropdownMenuContent, DropdownMenuGroup, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuItem, DropdownMenuTrigger } from '$components';
-  import { userStore } from '$lib/stores/user';
+  import { Input } from '$components';
   import logo from '$lib/assets/logo.svg';
   import { Search } from 'lucide-svelte';
+  import { SelectCompanyDropdown, ProfileDropdown, NotificationsPopover } from '$features';
 </script>
 
 <header class="p-4 bg-neutral-900 rounded-xl">
@@ -14,38 +14,18 @@
       </div>
       <nav>
         <ul class="flex items-center gap-2">
-          <li><a href="/in/dashboard" class="menuLink active">Dashboard</a></li>
-          <li><a href="/in/settings" class="menuLink">Settings</a></li>
+          <li><a href="/in/sale" class="menuLink active">Sale</a></li>
+          <li><a href="/in/purchase" class="menuLink">Purchase</a></li>
+          <li><a href="/in/reports" class="menuLink">Reports</a></li>
+          <li><a href="/in/additions" class="menuLink">Additions</a></li>
         </ul>
       </nav>
     </div>
     <div class="flex items-center justify-end gap-6">
       <Input type="text" placeholder="Search" icon={Search} />
-      <DropdownMenu>
-        <DropdownMenuTrigger>
-          <div class="flex items-center gap-2">
-            <Avatar>
-              <AvatarFallback>
-                {userStore.user()?.name.charAt(0)}{userStore.user()?.surname.charAt(0)}
-              </AvatarFallback>
-            </Avatar>
-            <p class="text-neutral-100 text-sm">
-              {userStore.user()?.name} {userStore.user()?.surname}
-            </p>
-          </div>
-        </DropdownMenuTrigger>
-        <DropdownMenuContent side="bottom" align="start">
-          <DropdownMenuGroup>
-            <DropdownMenuLabel>My Account</DropdownMenuLabel>
-            <DropdownMenuSeparator />
-            <DropdownMenuItem>Profile</DropdownMenuItem>
-            <DropdownMenuItem>Billing</DropdownMenuItem>
-            <DropdownMenuItem>Team</DropdownMenuItem>
-            <DropdownMenuSeparator />
-            <DropdownMenuItem on:click={() => userStore.logout()}>Logout</DropdownMenuItem>
-          </DropdownMenuGroup>
-        </DropdownMenuContent>
-      </DropdownMenu>
+      <SelectCompanyDropdown />
+      <NotificationsPopover />
+      <ProfileDropdown />
     </div>
   </div>
 </header>

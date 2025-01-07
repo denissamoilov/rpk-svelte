@@ -21,3 +21,4 @@ export {
   DropdownMenuSubTrigger,
   DropdownMenuTrigger,
 } from "./dropdown-menu";
+export { Popover, PopoverContent, PopoverTrigger } from "./popover";
