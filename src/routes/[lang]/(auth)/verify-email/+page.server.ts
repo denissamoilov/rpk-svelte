@@ -1,5 +1,8 @@
 import { error } from "@sveltejs/kit";
 import type { PageServerLoad } from "./$types";
+import { PUBLIC_BACKEND_URL } from "$env/static/public";
+import { api } from "$lib/api";
+import { config } from "$lib/config";
 
 interface VerificationResponse {
   success: boolean;
@@ -22,7 +25,8 @@ export const load: PageServerLoad = async ({ url, fetch }) => {
   }
 
   try {
-    const response = await fetch(`http://localhost:5005/api/verify`, {
+    const response = await api(config.endpoints.auth.verifyEmail, {
+      requireAuth: false,
       method: "POST",
       headers: {
         "Content-Type": "application/json",

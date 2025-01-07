@@ -5,9 +5,9 @@ export const config = {
   endpoints: {
     auth: {
       login: "/api/login",
-      register: "/api/verify-email",
+      signup: "/api/signup",
       refreshToken: "/api/refresh-token",
-      verify: "/api/verify",
+      verifyEmail: "/api/verify-email",
       resetPassword: "/api/reset-password",
       forgotPassword: "/api/forgot-password",
     },

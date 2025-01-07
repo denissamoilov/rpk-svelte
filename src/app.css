@@ -87,7 +87,7 @@
   }
 
   .input {
-    @apply w-full border transition-colors bg-gray-100 placeholder:text-neutral-700 disabled:cursor-not-allowed disabled:opacity-50;
+    @apply w-full border border-neutral-800 transition-colors bg-gray-100 placeholder:text-neutral-700 disabled:cursor-not-allowed disabled:opacity-50;
   }
 
   .input-xs {

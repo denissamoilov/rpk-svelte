@@ -11,7 +11,7 @@ const buttonVariants = tv({
       accent: "bg-accent-500 text-white hover:bg-accent-600",
       outline: "border border-secondary-500 hover:border-secondary-400",
       ghost: "hover:bg-gray-200 hover:text-gray-900",
-      gray: "bg-gray-100 hover:border-gray-300 border border-gray-200",
+      gray: "bg-neutral-900 border border-neutral-800 hover:bg-neutral-800/25",
     },
     size: {
       "icon-xs": "input-xs px-1 min-w-8",

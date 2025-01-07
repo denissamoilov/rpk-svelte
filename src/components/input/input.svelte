@@ -1,10 +1,11 @@
 <script lang="ts">
+  import type { Snippet } from "svelte";
 	import { inputVariants, type InputEvents, type InputProps } from "./index.js";
   import type { Icon as IconType } from "lucide-svelte";
 	import { cn } from "$lib/utils.js";
   import { Label } from "$components";
 
-	type $$Props = InputProps & { label?: string, icon?: typeof IconType; };
+	type $$Props = InputProps & { label?: string, icon?: typeof IconType; append?: Snippet };
 	type $$Events = InputEvents;
 	
   export let size: $$Props["size"] = "md";
@@ -12,7 +13,7 @@
 	export { className as class };
 
 	let className: $$Props["class"] = undefined;
-  let { label = '', icon = undefined } = $$props;
+  let { label = '', icon = undefined, append = undefined } = $$props;
   const Icon = icon;
 
 	// Workaround for https://github.com/sveltejs/svelte/issues/9305
@@ -33,7 +34,8 @@
     <input
       class={cn(
         inputVariants({size}),
-        icon ? "pl-11" : "pl-2",
+        icon && "pl-11",
+        append && "pr-11",
         "focus-outline",
         className
       )}
@@ -57,5 +59,10 @@
       on:wheel|passive
       {...$$restProps}
     />
+    {#if append}
+      <div class="absolute right-3 flex items-center top-1/2 -translate-y-1/2 pointer-events-none">
+        {@render append()}
+      </div>
+    {/if}
   </div>
 </div>

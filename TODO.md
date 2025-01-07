@@ -68,3 +68,15 @@
 # Create a loading state for authentication checks?
 # Add refresh token functionality?
 # Set up automatic token refresh?
+
+# SIGNUP FORM
+- FIELDS: Name*, Isikukood*, Email*, Password*
+
+# USER SETTINGS
+- CONTACT FORM FIELDS: Name, Isikukood, Email, Phone Number, Address
+- CHANGE PASSWORD FORM FIELDS: Current Password, New Password, Confirm New Password
+- NOTIFICATIONS FORM FIELDS: Email Notifications, Push Notifications, SMS Notifications
+- SECURITY QUESTIONS FORM FIELDS: Security Questions, Answers
+- PRIVACY SETTINGS FORM FIELDS: Data Sharing, Privacy Policy, Terms of Service
+- PAYMENT METHODS FORM FIELDS: Payment Methods, Payment History
+- SECURITY SETTINGS FORM FIELDS: Two-Factor Authentication, Login History, IP Addresses

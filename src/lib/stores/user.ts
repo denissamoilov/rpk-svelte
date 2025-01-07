@@ -1,7 +1,12 @@
+import { api } from "$lib/api";
+import { config } from "$lib/config";
 import { get, writable } from "svelte/store";
 import type { Writable } from "svelte/store";
 
 interface User {
+  name: string;
+  surname: string;
+  personalIdCode: string;
   email: string;
   isVerified: boolean;
 }
@@ -51,7 +56,8 @@ async function refreshAccessToken(
   refreshToken: string
 ): Promise<AuthTokens | null> {
   try {
-    const response = await fetch("http://localhost:5005/api/refresh-token", {
+    const response = await api(config.endpoints.auth.refreshToken, {
+      requireAuth: false,
       method: "POST",
       headers: {
         "Content-Type": "application/json",

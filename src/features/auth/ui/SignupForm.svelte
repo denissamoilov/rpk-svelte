@@ -1,11 +1,15 @@
 <script lang="ts">
   import { Input, Button, Separator } from "$components";
   import PasswordStrengthIndicator from "./PasswordStrengthIndicator.svelte";
+  import PersonalIdCodeInput from "./PersonalIdCodeInput.svelte";
   import Alert from "$components/alert/alert.svelte";
   import { AlertDescription, AlertTitle } from "$components/alert";
   import { api } from "$lib/api";
   import { config } from "$lib/config";
   import { page } from "$app/stores";
+  let name = '';
+  let surname = '';
+  let personalIdCode = '';
   let email = '';
   let password = '';
   let errorMessage: Error = { message: '', name: '' };
@@ -13,6 +17,8 @@
   export let formSendSuccess;
   export let message;
   let lang = $page.params.lang;
+
+  $: console.log('Personal ID Code changed:', personalIdCode);
 
   const handleSubmit = async (e: Event) => {
     e.preventDefault();
@@ -22,10 +28,16 @@
     formSendSuccess = false;
     
     try {
-      const response = await api(config.endpoints.auth.register, {
+      const response = await api(config.endpoints.auth.signup, {
         requireAuth: false,
         method: 'POST',
-        body: JSON.stringify({ email, password }),
+        body: JSON.stringify({ 
+          name,
+          surname,
+          personalIdCode,
+          email, 
+          password 
+        }),
       });
       
       if (!response.ok) {
@@ -38,6 +50,9 @@
       const data = await response.json();
       message = data.message || 'Please check your email for verification instructions.';
       formSendSuccess = true;
+      name = '';
+      surname = '';
+      personalIdCode = '';
       email = '';
       password = '';
     } catch (error) {
@@ -52,6 +67,23 @@
 <div class="flex flex-col gap-4 w-full">
   <!-- <Form action="?/register" data={data.form} invalidateAll={false} let:message let:superform> -->
     <form class="flex flex-col gap-4" on:submit={handleSubmit}>
+      <Input
+        type="text"
+        placeholder="Name"
+        size="lg"
+        label="Name"
+        bind:value={name}
+        required
+      />
+      <Input
+        type="text"
+        placeholder="Surname"
+        size="lg"
+        label="Surname"
+        bind:value={surname}
+        required
+      />
+      <PersonalIdCodeInput required={true} bind:value={personalIdCode} />
       <Input
         type="email"
         placeholder="Email"

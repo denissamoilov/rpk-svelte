@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { Input, Button } from '$components';
+  import { Input, Button, Avatar, AvatarFallback } from '$components';
   import { userStore } from '$lib/stores/user';
   import logo from '$lib/assets/logo.svg';
   import { Search } from 'lucide-svelte';
@@ -21,9 +21,16 @@
     </div>
     <div class="flex items-center justify-end gap-6">
       <Input type="text" placeholder="Search" icon={Search} />
-      <p class="text-neutral-100 text-sm">
-        {userStore.user()?.email}
-      </p>
+      <div class="flex items-center gap-2">
+        <Avatar>
+          <AvatarFallback>
+            {userStore.user()?.name.charAt(0)}{userStore.user()?.surname.charAt(0)}
+          </AvatarFallback>
+        </Avatar>
+        <p class="text-neutral-100 text-sm">
+          {userStore.user()?.name} {userStore.user()?.surname}
+        </p>
+      </div>
       <div class="flex items-center gap-4">
         <Button variant="outline" on:click={() => userStore.logout()}>Logout</Button>
       </div>

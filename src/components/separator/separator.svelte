@@ -16,9 +16,9 @@
 
 <SeparatorPrimitive.Root
 	class={cn(
-		"flex items-center justify-center shrink-0 bg-gray-200 text-sm text-shadow-lg relative",
+		"flex items-center justify-center shrink-0 bg-neutral-800 text-sm text-shadow-lg relative",
 		orientation === "horizontal" ? "h-px min-w-full" : "min-h-full w-px",
-		label && label.length > 0 && "after:content-[attr(data-label)] after:absolute after:top-1/2 after:left-1/2 after:-translate-x-1/2 after:-translate-y-1/2 after:text-sm after:text-neutral-500 after:bg-background after:px-2",
+		label && label.length > 0 && "after:content-[attr(data-label)] after:absolute after:top-1/2 after:left-1/2 after:-translate-x-1/2 after:-translate-y-1/2 after:text-sm after:text-neutral-500 after:bg-neutral-900 after:px-2",
 		className
 	)}
 	data-label={label}

@@ -1,4 +1,5 @@
 export { default as Button } from "./button/button.svelte";
+export { Avatar, AvatarImage, AvatarFallback } from "./avatar";
 export { default as Select } from "./select/select-content.svelte";
 export { default as Input } from "./input/input.svelte";
 export { default as Label } from "./label/label.svelte";
