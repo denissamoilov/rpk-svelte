@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { Input, Button, Avatar, AvatarFallback } from '$components';
+  import { Input, Button, Avatar, AvatarFallback, DropdownMenu, DropdownMenuContent, DropdownMenuGroup, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuItem, DropdownMenuTrigger } from '$components';
   import { userStore } from '$lib/stores/user';
   import logo from '$lib/assets/logo.svg';
   import { Search } from 'lucide-svelte';
@@ -21,19 +21,31 @@
     </div>
     <div class="flex items-center justify-end gap-6">
       <Input type="text" placeholder="Search" icon={Search} />
-      <div class="flex items-center gap-2">
-        <Avatar>
-          <AvatarFallback>
-            {userStore.user()?.name.charAt(0)}{userStore.user()?.surname.charAt(0)}
-          </AvatarFallback>
-        </Avatar>
-        <p class="text-neutral-100 text-sm">
-          {userStore.user()?.name} {userStore.user()?.surname}
-        </p>
-      </div>
-      <div class="flex items-center gap-4">
-        <Button variant="outline" on:click={() => userStore.logout()}>Logout</Button>
-      </div>
+      <DropdownMenu>
+        <DropdownMenuTrigger>
+          <div class="flex items-center gap-2">
+            <Avatar>
+              <AvatarFallback>
+                {userStore.user()?.name.charAt(0)}{userStore.user()?.surname.charAt(0)}
+              </AvatarFallback>
+            </Avatar>
+            <p class="text-neutral-100 text-sm">
+              {userStore.user()?.name} {userStore.user()?.surname}
+            </p>
+          </div>
+        </DropdownMenuTrigger>
+        <DropdownMenuContent side="bottom" align="start">
+          <DropdownMenuGroup>
+            <DropdownMenuLabel>My Account</DropdownMenuLabel>
+            <DropdownMenuSeparator />
+            <DropdownMenuItem>Profile</DropdownMenuItem>
+            <DropdownMenuItem>Billing</DropdownMenuItem>
+            <DropdownMenuItem>Team</DropdownMenuItem>
+            <DropdownMenuSeparator />
+            <DropdownMenuItem on:click={() => userStore.logout()}>Logout</DropdownMenuItem>
+          </DropdownMenuGroup>
+        </DropdownMenuContent>
+      </DropdownMenu>
     </div>
   </div>
 </header>
