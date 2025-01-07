@@ -22,3 +22,4 @@ export {
   DropdownMenuTrigger,
 } from "./dropdown-menu";
 export { Popover, PopoverContent, PopoverTrigger } from "./popover";
+export { Switch } from "./switch";
