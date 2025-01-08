@@ -101,6 +101,7 @@
         type="submit"
         size="lg"
         disabled={isLoading}
+        isLoading={isLoading}
       >
         {isLoading ? 'Logging in...' : 'Login'}
       </Button>

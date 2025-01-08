@@ -1,6 +1,7 @@
 <script lang="ts">
   import { DropdownMenu, DropdownMenuContent, DropdownMenuGroup, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuItem, DropdownMenuTrigger, Avatar, AvatarFallback } from '$components';
   import { userStore } from '$lib/stores/user';
+  import { ChevronDown } from 'lucide-svelte';
 </script>
 
 <DropdownMenu>
@@ -14,13 +15,13 @@
       <p class="text-neutral-100 text-sm">
         {userStore.user()?.name} {userStore.user()?.surname}
       </p>
+      <ChevronDown size={16} />
     </div>
   </DropdownMenuTrigger>
-  <DropdownMenuContent side="bottom" align="start" sideOffset={8}>
+  <DropdownMenuContent side="bottom" align="end" sideOffset={8} class="w-56">
     <DropdownMenuGroup>
-      <DropdownMenuLabel>My Account</DropdownMenuLabel>
-      <DropdownMenuSeparator />
       <DropdownMenuItem>Profile</DropdownMenuItem>
+      <DropdownMenuItem>Settings</DropdownMenuItem>
       <DropdownMenuSeparator />
       <DropdownMenuItem on:click={() => userStore.logout()}>Logout</DropdownMenuItem>
     </DropdownMenuGroup>

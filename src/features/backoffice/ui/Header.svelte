@@ -21,7 +21,7 @@
         </ul>
       </nav>
     </div>
-    <div class="flex items-center justify-end gap-6">
+    <div class="flex items-center justify-end gap-3">
       <Input type="text" placeholder="Search" icon={Search} />
       <SelectCompanyDropdown />
       <NotificationsPopover />
