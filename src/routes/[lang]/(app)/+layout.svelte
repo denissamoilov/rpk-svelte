@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { userStore, auth } from '$lib/stores/user';
+  import { userStore } from '$lib/stores/user';
   import { goto } from '$app/navigation';
   import { page } from '$app/stores';
   import { onMount, onDestroy } from 'svelte';
@@ -38,20 +38,8 @@
       }
     };
 
-    auth.events.on('token:expired', handleTokenExpired);
-    auth.events.on('token:refresh', handleTokenRefresh);
-    auth.events.on('auth:error', handleAuthError);
-
     // Initialize auth state after checking
     userStore.initializeAuth();
-
-    // Cleanup function
-    unsubscribeAuth = () => {
-      unsubscribe();
-      auth.events.off('token:expired', handleTokenExpired);
-      auth.events.off('token:refresh', handleTokenRefresh);
-      auth.events.off('auth:error', handleAuthError);
-    };
   });
 
   onDestroy(() => {
