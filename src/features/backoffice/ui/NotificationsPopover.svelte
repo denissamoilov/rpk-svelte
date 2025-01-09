@@ -5,7 +5,7 @@
  
 <Popover portal={null}>
  <PopoverTrigger asChild let:builder>
-  <Button builders={[builder]} variant="ghost" size="sm">
+  <Button builders={[builder]} variant="ghost" size="icon-sm">
     <Bell class="size-4" />
   </Button>
  </PopoverTrigger>

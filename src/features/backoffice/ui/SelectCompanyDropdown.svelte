@@ -6,7 +6,7 @@
 </script>
 
 <DropdownMenu>
-  <DropdownMenuTrigger>
+  <DropdownMenuTrigger class="w-full">
     <Button variant="gray" rightIcon={ChevronDown}>
       Select company
     </Button>

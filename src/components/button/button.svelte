@@ -3,7 +3,6 @@
 	import { type Events, type Props, buttonVariants } from "./index";
 	import { cn } from "$lib/utils";
   import type { Icon as IconType } from "lucide-svelte";
-  import { Loader } from "lucide-svelte";
 
 	type $$Props = Props & { leftIcon?: typeof IconType; rightIcon?: typeof IconType; isLoading?: boolean};
 	export let variant: $$Props["variant"] = "primary";
