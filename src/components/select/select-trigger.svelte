@@ -16,7 +16,7 @@
 <SelectPrimitive.Trigger
 	class={cn(
 		selectVariants({size}),
-		"focus-outline",
+		"bg-background focus-outline",
 		className
 	)}
 	{...$$restProps}

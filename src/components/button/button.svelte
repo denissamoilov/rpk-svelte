@@ -11,7 +11,7 @@
 	export { className as class };
   
 	let className: $$Props["class"] = undefined;
-  let { leftIcon = undefined, rightIcon = undefined, isLoading = false } = $$props;
+  let { leftIcon = undefined, rightIcon = undefined, isLoading = false }: $$Props = $$props;
 	type $$Events = Events;
   const LeftIcon = leftIcon;
   const RightIcon = rightIcon;

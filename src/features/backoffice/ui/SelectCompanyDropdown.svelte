@@ -1,21 +1,28 @@
 <script lang="ts">
-  import { DropdownMenu, DropdownMenuContent, DropdownMenuGroup, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuItem, DropdownMenuTrigger, Button } from '$components';
-  import { ChevronDown } from 'lucide-svelte';
+  import { Select, type SelectSizeType } from "$components/select";
+  import type { SelectOptionType } from "$lib/types/docs";
+  import { Building2Icon } from "lucide-svelte";
+  export let size: SelectSizeType = "md";
 
-  let selectedCompany = $state(null);
+  const myCompanies = [
+    { value: "upapp", label: "UpApp OÜ", disabled: false},
+    { value: "rpk", label: "Raamatupidamiskeskus OÜ", disabled: false},
+    { value: "dial", label: "Dial OÜ", disabled: false},
+  ]
+
+  let currentCompany: SelectOptionType = myCompanies[0];
+
+  // const unsubscribe = languageStore.subscribe(value => {
+  //   currentCompany = value;
+  // })
+
+  // onMount(() => {
+  //   return () => unsubscribe();
+  // })
+
+  const changeCompany = (company: SelectOptionType) => {
+    // setCompany(company);
+  }
 </script>
 
-<DropdownMenu>
-  <DropdownMenuTrigger class="w-full">
-    <Button variant="gray" rightIcon={ChevronDown}>
-      Select company
-    </Button>
-  </DropdownMenuTrigger>
-  <DropdownMenuContent side="bottom" align="start" sideOffset={8}>
-    <DropdownMenuGroup>
-      <DropdownMenuItem>UpApp OÜ</DropdownMenuItem>
-      <DropdownMenuItem>Raamatupidamiskeskus OÜ</DropdownMenuItem>
-      <DropdownMenuItem>Dial OÜ</DropdownMenuItem>
-    </DropdownMenuGroup>
-  </DropdownMenuContent>
-</DropdownMenu>
+<Select size={size} onChangeHandle={changeCompany} options={myCompanies} currentValue={currentCompany} leftIcon={Building2Icon} placeholder="SelectCompany" />

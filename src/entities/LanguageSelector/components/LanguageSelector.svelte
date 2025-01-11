@@ -3,7 +3,7 @@
   import { languageStore, setLanguage } from "../stores/languageStore";
   import { Select, type SelectSizeType } from "$components/select";
   import type { SelectOptionType } from "$lib/types/docs";
-
+  import { GlobeIcon } from "lucide-svelte";
   let currentLanguage: SelectOptionType;
   export let size: SelectSizeType ="md";
 
@@ -26,4 +26,4 @@
   }
 </script>
 
-<Select size={size} onChangeHandle={changeLanguage} options={languages} currentValue={currentLanguage} />
+<Select size={size} onChangeHandle={changeLanguage} options={languages} currentValue={currentLanguage} leftIcon={GlobeIcon} placeholder="Select Language" />

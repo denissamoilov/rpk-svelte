@@ -154,8 +154,9 @@
   }
 }
 
+html {
+  @apply bg-neutral-950;
+}
 body {
-  color: var(--foreground);
-  background: var(--background);
-  @apply font-sans;
+  @apply font-sans text-foreground;
 }

@@ -3,8 +3,7 @@
   import { goto } from '$app/navigation';
   import { page } from '$app/stores';
   import { onMount } from 'svelte';
-  import { BackofficeSidebar } from '$features';
-
+  import { BackofficeSidebar, Header } from '$features';
   let { children } = $props();
 
   onMount(() => {
@@ -22,10 +21,11 @@
   });
 </script>
 
-<div class="p-4 h-full">
-  <div class="flex gap-6 h-full">
+<div class="h-dvh flex flex-col">
+  <Header />
+  <div class="grid grid-cols-[250px_1fr] flex-1 gap-4 px-3 pb-3">
     <BackofficeSidebar />
-    <main class="p-4 flex-1">
+    <main class="flex-1 p-3">
       {@render children()}
     </main>
   </div>
