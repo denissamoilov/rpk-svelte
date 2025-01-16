@@ -18,8 +18,6 @@
   export let message;
   let lang = $page.params.lang;
 
-  $: console.log('Personal ID Code changed:', personalIdCode);
-
   const handleSubmit = async (e: Event) => {
     e.preventDefault();
     isLoading = true;
@@ -42,7 +40,6 @@
       
       if (!response.ok) {
         const error = await response.json();
-        console.log(error);
         errorMessage = error;
         throw new Error(error.error || 'Registration failed');
       }

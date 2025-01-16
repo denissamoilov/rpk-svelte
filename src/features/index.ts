@@ -8,3 +8,5 @@ export { default as PersonalIdCodeInput } from "./auth/ui/PersonalIdCodeInput.sv
 export { default as SelectCompanyDropdown } from "./backoffice/ui/SelectCompanyDropdown.svelte";
 export { default as ProfileDropdown } from "./backoffice/ui/ProfileDropdown.svelte";
 export { default as NotificationsPopover } from "./backoffice/ui/NotificationsPopover.svelte";
+export { default as CompanyEditForm } from "./backoffice/ui/CompanyEditForm.svelte";
+export { default as CompanyCreateForm } from "./backoffice/ui/CompanyCreateForm.svelte";

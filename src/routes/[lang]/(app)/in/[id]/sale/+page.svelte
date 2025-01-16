@@ -53,7 +53,7 @@
 <div class="flex flex-col gap-6">
   <div class="flex items-center justify-between">
     <div>
-      <h1 class="text-2xl font-semibold">Sales</h1>
+      <h1 class="heading-1">Sales</h1>
       <p class="text-muted-foreground">Manage your sales invoices, orders, and transactions</p>
     </div>
     <Button leftIcon={PlusIcon} variant="outline">

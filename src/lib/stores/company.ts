@@ -1,9 +1,9 @@
-import { writable, get } from "svelte/store";
+import { writable } from "svelte/store";
 import { api } from "$lib/api";
 import { config } from "$lib/config";
 
 export interface Company {
-  id: number;
+  id: string;
   name: string;
   registrationNumber: string;
   email: string;
@@ -30,14 +30,11 @@ function createCompanyStore() {
 
   return {
     subscribe,
-    update: (updater: (state: CompanyStore) => CompanyStore) => {
-      update(updater);
-    },
-    fetchUserCompanies: async () => {
+    getCompanyList: async () => {
       update((state) => ({ ...state, isLoading: true, error: null }));
 
       try {
-        const response = await api("/company/user", {
+        const response = await api(config.endpoints.company.getCompanyList, {
           method: "GET",
         });
 
@@ -46,16 +43,16 @@ function createCompanyStore() {
           throw new Error(error.message || "Failed to fetch companies");
         }
 
-        const companies = await response.json();
+        const result = await response.json();
 
         update((state) => ({
           ...state,
-          companies,
+          companies: result.companies,
           // If no company is selected, select the first one
-          selectedCompany: state.selectedCompany || companies[0] || null,
+          selectedCompany: state.selectedCompany || result.companies[0] || null,
         }));
 
-        return companies;
+        return result.companies as Company[];
       } catch (error) {
         const message =
           error instanceof Error ? error.message : "Failed to fetch companies";
@@ -65,7 +62,39 @@ function createCompanyStore() {
         update((state) => ({ ...state, isLoading: false }));
       }
     },
-    updateCompany: async (id: number, data: Partial<Company>) => {
+    createCompany: async (data: Partial<Company>) => {
+      update((state) => ({ ...state, isLoading: true, error: null}));
+
+      try {
+        const response = await api(config.endpoints.company.createCompany, {
+          requireAuth: true,
+          method: "POST",
+          body: JSON.stringify(data),
+        });
+
+        if(!response.ok) {
+          const error = await response.json();
+          throw new Error(error.message || "Failed to create company");
+        }
+
+        const company = await response.json();
+
+        update((state) => ({
+          ...state,
+          companies: [...state.companies, company],
+          selectedCompany: company,
+        }));
+
+        return company;
+      } catch (error) {
+        const message = error instanceof Error ? error.message : "Failed to create company";
+        update((state) => ({ ...state, error: message }));
+        throw error;
+      } finally {
+        update((state) => ({ ...state, isLoading: false }));
+      }
+    },
+    updateCompany: async (id: string, data: Partial<Company>) => {
       update((state) => ({ ...state, isLoading: true, error: null }));
 
       try {
@@ -102,8 +131,8 @@ function createCompanyStore() {
         update((state) => ({ ...state, isLoading: false }));
       }
     },
-    setSelectedCompany: (company: Company | null) => {
-      update((state) => ({ ...state, selectedCompany: company }));
+    setSelectedCompany: (id: string | null) => {
+      update((state) => ({ ...state, selectedCompany: state.companies.find(c => c.id === id) || null }));
     },
   };
 }

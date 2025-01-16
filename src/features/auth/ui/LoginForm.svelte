@@ -33,15 +33,12 @@
       }
 
       const data = await response.json();
-
-      console.log("Login data", data);
       
       // Store user data and tokens
       await userStore.login(data.user, {
         accessToken: data.accessToken,
         refreshToken: data.refreshToken
       }).then(() => {
-        console.log("Login data", data);
         // Redirect to dashboard in the app group
         goto(`/${lang}/in`);
       });
@@ -106,6 +103,7 @@
         size="lg"
         disabled={isLoading}
         isLoading={isLoading}
+        isCentered={true}
       >
         {isLoading ? 'Logging in...' : 'Login'}
       </Button>

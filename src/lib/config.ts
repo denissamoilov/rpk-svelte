@@ -12,7 +12,9 @@ export const config = {
       forgotPassword: "/api/forgot-password",
     },
     company: {
-      getCompanies: "/api/user/company-list",
+      getCompanyList: "/api/company/list",
+      createCompany: "/api/company/create",
+      updateCompany: "/api/company/update",
     },
   },
 } as const;

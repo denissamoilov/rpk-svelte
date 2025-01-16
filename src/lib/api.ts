@@ -18,9 +18,7 @@ export async function api(endpoint: string, options: FetchOptions = {}) {
   // Add auth token if required
   if (requireAuth) {
     const token = await userStore.getAccessToken();
-    userStore.getAccessToken().then((token) => {
-      console.log("Token ::", token);
-    });
+    
     if (!token) {
       throw new Error("No authentication token available");
     }

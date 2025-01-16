@@ -2,7 +2,6 @@
   import { Button, Separator } from '$components';
   import { BookHeartIcon, Building2Icon, CalendarCheckIcon, DatabaseIcon, FileIcon, FileTextIcon, HandshakeIcon, ShoppingCartIcon, WalletCardsIcon } from 'lucide-svelte';
   import { SelectCompanyDropdown } from '$features';
-  import { cn } from '$lib/utils';
   import { LanguageSelector } from '$entities/LanguageSelector';
   import { page } from '$app/stores';
   import { PlusIcon } from 'lucide-svelte';

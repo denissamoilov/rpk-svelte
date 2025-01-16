@@ -5,6 +5,7 @@ import type { Writable } from "svelte/store";
 import type { Company } from "./company";
 
 interface User {
+  id: string;
   name: string;
   surname: string;
   personalIdCode: string;
@@ -126,7 +127,6 @@ function createUserStore() {
         isLoading: false,
       };
       set(newState);
-      console.log("State ::", newState);
       if (typeof window !== "undefined") {
         localStorage.setItem("user", JSON.stringify(userData));
         localStorage.setItem("tokens", JSON.stringify(tokens));
@@ -188,7 +188,6 @@ function createUserStore() {
     },
     getAccessToken: async () => {
       const state = get(userStore);
-      console.log("State ::", state);
       if (!state.tokens?.accessToken) return null;
 
       // Check if token needs refresh

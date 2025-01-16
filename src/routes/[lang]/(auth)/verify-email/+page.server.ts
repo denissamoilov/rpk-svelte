@@ -16,8 +16,6 @@ interface VerificationResponse {
 export const load: PageServerLoad = async ({ url, fetch }) => {
   const token = url.searchParams.get("token");
 
-  console.log(JSON.stringify({ token }));
-
   if (!token) {
     throw error(400, {
       message: "Verification token is missing",

@@ -4,11 +4,11 @@
 	import { cn } from "$lib/utils";
   import type { Icon as IconType } from "lucide-svelte";
 
-  type Properties = Props & { leftIcon?: typeof IconType; rightIcon?: typeof IconType; isLoading?: boolean};
+  type Properties = Props & { leftIcon?: typeof IconType; rightIcon?: typeof IconType; isLoading?: boolean, isCentered?: boolean, isFullWidth?: boolean};
   export { className as class };
 
   
-  let { variant, size,leftIcon = undefined, rightIcon = undefined, isLoading = false, class: className, children, ...restProps }: Properties = $props();
+  let { variant, size,leftIcon = undefined, rightIcon = undefined, isLoading = false, isCentered = false, isFullWidth = false, class: className, children, builders = [], ...restProps }: Properties = $props();
   type $$Events = Events;
 
   const iconSize = $derived(size?.includes("sm") || size?.includes("xs") ? 16 : 20);
@@ -26,7 +26,7 @@
     <LeftIcon class="shrink-0" size={iconSize} />
   {/if}
   {#if children}
-    <span class="w-full text-left">
+    <span class={cn("text-left", isCentered && "text-center", isFullWidth && "w-full")}>
       {@render children?.()}
     </span>
   {/if}
