@@ -4,33 +4,33 @@
 	import { cn } from "$lib/utils";
   import type { Icon as IconType } from "lucide-svelte";
 
-	type $$Props = Props & { leftIcon?: typeof IconType; rightIcon?: typeof IconType; isLoading?: boolean};
-	export let variant: $$Props["variant"] = "primary";
-	export let size: $$Props["size"] = "md";
-	export let builders: $$Props["builders"] = [];
-	export { className as class };
+  type Properties = Props & { leftIcon?: typeof IconType; rightIcon?: typeof IconType; isLoading?: boolean};
+  export { className as class };
+
   
-	let className: $$Props["class"] = undefined;
-  let { leftIcon = undefined, rightIcon = undefined, isLoading = false }: $$Props = $$props;
-	type $$Events = Events;
+  let { variant, size,leftIcon = undefined, rightIcon = undefined, isLoading = false, class: className, children, ...restProps }: Properties = $props();
+  type $$Events = Events;
+
+  const iconSize = $derived(size?.includes("sm") || size?.includes("xs") ? 16 : 20);
+
   const LeftIcon = leftIcon;
   const RightIcon = rightIcon;
   
 </script>
 
 <ButtonPrimitive.Root
-	{builders}
-	class={cn(buttonVariants({ variant, size, className }), "focus-outline")}
-	type="button"
-	{...$$restProps}
-	on:click
-	on:keydown
+	class={cn(buttonVariants({ variant, size }), "focus-outline", className)}
+	{...restProps}
 >
   {#if leftIcon}
-    <LeftIcon />
+    <LeftIcon class="shrink-0" size={iconSize} />
   {/if}
-	<slot />
+  {#if children}
+    <span class="w-full text-left">
+      {@render children?.()}
+    </span>
+  {/if}
   {#if rightIcon}
-    <RightIcon />
+    <RightIcon class="shrink-0" size={iconSize} />
   {/if}
 </ButtonPrimitive.Root>

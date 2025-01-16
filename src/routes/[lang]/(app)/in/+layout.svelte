@@ -3,8 +3,10 @@
   import { goto } from '$app/navigation';
   import { page } from '$app/stores';
   import { onMount } from 'svelte';
-  import { BackofficeSidebar, Header } from '$features';
-  let { children } = $props();
+  import { BackofficeSidebar, Footer, Header } from '$features';
+  import type { LayoutData } from './$types';
+  import { companyStore } from '$lib/stores/company';
+  let { data, children } = $props<{ data: LayoutData }>();
 
   onMount(() => {
     // Check if user is authenticated
@@ -25,8 +27,11 @@
   <Header />
   <div class="grid grid-cols-[250px_1fr] flex-1 gap-4 px-3 pb-3">
     <BackofficeSidebar />
-    <main class="flex-1 p-3">
-      {@render children()}
+    <main class="flex flex-col flex-1 p-3">
+      <div class="grow">
+        {@render children()}
+      </div>
+      <Footer />
     </main>
   </div>
 </div>

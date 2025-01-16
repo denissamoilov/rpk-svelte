@@ -56,7 +56,7 @@
       <h1 class="text-2xl font-semibold">Sales</h1>
       <p class="text-muted-foreground">Manage your sales invoices, orders, and transactions</p>
     </div>
-    <Button leftIcon={PlusIcon}>
+    <Button leftIcon={PlusIcon} variant="outline">
       New Invoice
     </Button>
   </div>

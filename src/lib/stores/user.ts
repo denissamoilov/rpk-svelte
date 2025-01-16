@@ -2,6 +2,7 @@ import { api } from "$lib/api";
 import { config } from "$lib/config";
 import { get, writable } from "svelte/store";
 import type { Writable } from "svelte/store";
+import type { Company } from "./company";
 
 interface User {
   name: string;
@@ -9,6 +10,7 @@ interface User {
   personalIdCode: string;
   email: string;
   isVerified: boolean;
+  companies: Company[]
 }
 
 interface AuthTokens {
@@ -116,7 +118,7 @@ function createUserStore() {
     user: () => {
       return get(userStore).user;
     },
-    login: (userData: User, tokens: AuthTokens) => {
+    login: async (userData: User, tokens: AuthTokens) => {
       const newState = {
         user: userData,
         tokens,
@@ -124,6 +126,7 @@ function createUserStore() {
         isLoading: false,
       };
       set(newState);
+      console.log("State ::", newState);
       if (typeof window !== "undefined") {
         localStorage.setItem("user", JSON.stringify(userData));
         localStorage.setItem("tokens", JSON.stringify(tokens));
@@ -185,6 +188,7 @@ function createUserStore() {
     },
     getAccessToken: async () => {
       const state = get(userStore);
+      console.log("State ::", state);
       if (!state.tokens?.accessToken) return null;
 
       // Check if token needs refresh

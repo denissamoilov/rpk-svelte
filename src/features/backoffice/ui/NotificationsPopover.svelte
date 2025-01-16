@@ -5,9 +5,7 @@
  
 <Popover portal={null}>
  <PopoverTrigger asChild let:builder>
-  <Button builders={[builder]} variant="ghost" size="icon-sm">
-    <Bell class="size-4" />
-  </Button>
+  <Button builders={[builder]} variant="ghost" size="icon-sm" leftIcon={Bell} />
  </PopoverTrigger>
  <PopoverContent class="w-80" align="center" side="bottom" sideOffset={8}>
     <h6 class="text-md font-bold">Notifications</h6>

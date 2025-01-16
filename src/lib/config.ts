@@ -11,6 +11,9 @@ export const config = {
       resetPassword: "/api/reset-password",
       forgotPassword: "/api/forgot-password",
     },
+    company: {
+      getCompanies: "/api/user/company-list",
+    },
   },
 } as const;
 

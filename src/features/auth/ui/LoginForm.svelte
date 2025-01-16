@@ -33,15 +33,19 @@
       }
 
       const data = await response.json();
+
+      console.log("Login data", data);
       
       // Store user data and tokens
-      userStore.login(data.user, {
+      await userStore.login(data.user, {
         accessToken: data.accessToken,
         refreshToken: data.refreshToken
+      }).then(() => {
+        console.log("Login data", data);
+        // Redirect to dashboard in the app group
+        goto(`/${lang}/in`);
       });
       
-      // Redirect to dashboard in the app group
-      goto(`/${lang}/in`);
     } catch (error) {
       console.error('Login error:', error);
       error instanceof Error ? errorMessage = error : errorMessage = { message: 'Login failed', name: 'Login failed' };
