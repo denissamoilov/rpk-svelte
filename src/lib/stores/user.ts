@@ -2,7 +2,8 @@ import { api } from "$lib/api";
 import { config } from "$lib/config";
 import { get, writable } from "svelte/store";
 import type { Writable } from "svelte/store";
-import type { Company } from "./company";
+import type { SelectOptionType } from "$lib/types/docs";
+import { companyStore } from "./company";
 
 interface User {
   id: string;
@@ -11,7 +12,7 @@ interface User {
   personalIdCode: string;
   email: string;
   isVerified: boolean;
-  companies: Company[]
+  companies: SelectOptionType[]
 }
 
 interface AuthTokens {
@@ -127,6 +128,7 @@ function createUserStore() {
         isLoading: false,
       };
       set(newState);
+
       if (typeof window !== "undefined") {
         localStorage.setItem("user", JSON.stringify(userData));
         localStorage.setItem("tokens", JSON.stringify(tokens));
@@ -143,6 +145,8 @@ function createUserStore() {
         localStorage.removeItem("user");
         localStorage.removeItem("tokens");
       }
+
+      companyStore.setSelectedCompany(null);
     },
     update: (userData: Partial<User>) => {
       update((state) => {

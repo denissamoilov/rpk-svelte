@@ -2,7 +2,9 @@
 
 declare namespace App {
   // interface Error {}
-  // interface Locals {}
+  interface Locals {
+    token: string | undefined;
+  }
   // interface PageData {}
   // interface Platform {}
 }

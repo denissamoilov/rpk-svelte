@@ -1,17 +1,16 @@
 <!-- src/routes/[lang]/in/[id]/+page.svelte -->
 <script lang="ts">
-  import type { PageData } from './$types';
   import { companyStore } from '$lib/stores/company';
-  import { page } from '$app/stores';
+  import type { PageData } from './$types';
 
   let { data } = $props<{ data: PageData }>();
-  
-  // You can access the company data from the store
-  const company = $derived($companyStore.companies.find(c => c.id === $page.params.id));
-  
+
+  let company = $derived($companyStore.selectedCompany);
+
   $effect(() => {
-    console.log("company :: ", $companyStore);
-  })
+    companyStore.fetchCompany(data.id);
+  });
+  
 </script>
 
 <div>

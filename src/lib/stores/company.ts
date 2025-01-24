@@ -28,6 +28,9 @@ function createCompanyStore() {
     error: null,
   });
 
+  const storedTokens =
+    typeof window !== "undefined" ? localStorage.getItem("tokens") : null;
+
   return {
     subscribe,
     getCompanyList: async () => {
@@ -67,7 +70,6 @@ function createCompanyStore() {
 
       try {
         const response = await api(config.endpoints.company.createCompany, {
-          requireAuth: true,
           method: "POST",
           body: JSON.stringify(data),
         });
@@ -131,8 +133,36 @@ function createCompanyStore() {
         update((state) => ({ ...state, isLoading: false }));
       }
     },
-    setSelectedCompany: (id: string | null) => {
-      update((state) => ({ ...state, selectedCompany: state.companies.find(c => c.id === id) || null }));
+    fetchCompany: async (id: string) => {
+      update((state) => ({ ...state, isLoading: true, error: null }));
+      try {
+        const response = await api(config.endpoints.company.getCompany.replace(':id', id), {
+          method: "GET",
+          server: {
+            locals: {
+              token: storedTokens!
+            }
+          }
+        });
+
+        const data = await response.json();
+
+        if(!data.success) {
+          throw new Error(data.message || "Failed to fetch company");
+        }
+
+        update((state) => ({ ...state, selectedCompany: data.company }));
+
+        return data.company;
+      } catch (error) {
+        console.error("Error fetching company:", error);
+        return null;
+      } finally {
+        update((state) => ({ ...state, isLoading: false }));
+      }
+    },
+    setSelectedCompany: (company: Company | null) => {
+      update((state) => ({ ...state, selectedCompany: company }));
     },
   };
 }

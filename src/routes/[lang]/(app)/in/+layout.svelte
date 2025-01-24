@@ -21,7 +21,7 @@
     try {
       await companyStore.getCompanyList();
     } catch (error) {
-      console.error("Error fetching user companies:", error);
+      console.error("Error fetching user companies::", error);
     }
   })
 

@@ -14,6 +14,7 @@ export const config = {
     company: {
       getCompanyList: "/api/company/list",
       createCompany: "/api/company/create",
+      getCompany: "/api/company/:id",
       updateCompany: "/api/company/update",
     },
   },

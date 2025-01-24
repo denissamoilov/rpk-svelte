@@ -58,5 +58,5 @@ export type ObjectValues<T> = T[keyof T];
 export type SelectOptionType = {
   value: string;
   label: string;
-  disabled: boolean;
+  disabled?: boolean;
 };

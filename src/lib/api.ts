@@ -3,6 +3,11 @@ import { getApiUrl } from "./config";
 
 interface FetchOptions extends RequestInit {
   requireAuth?: boolean;
+  server?: {
+    locals: {
+      token?: string;
+    };
+  };
 }
 
 export async function api(endpoint: string, options: FetchOptions = {}) {
@@ -17,12 +22,13 @@ export async function api(endpoint: string, options: FetchOptions = {}) {
 
   // Add auth token if required
   if (requireAuth) {
-    const token = await userStore.getAccessToken();
-    
-    if (!token) {
-      throw new Error("No authentication token available");
+    if (options.server?.locals?.token) {
+      headers.set("Authorization", `Bearer ${options.server.locals.token}`);
+    } else {
+      const token = await userStore.getAccessToken();
+      if (!token) throw new Error("No authentication token available");
+      headers.set("Authorization", `Bearer ${token}`);
     }
-    headers.set("Authorization", `Bearer ${token}`);
   }
 
   // Make the request

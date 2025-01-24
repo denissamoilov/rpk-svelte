@@ -20,35 +20,62 @@
     errorMessage = { message: '', name: '' };
     
     try {
-      const response = await api(config.endpoints.auth.login, {
-        requireAuth: false,
+      const response = await fetch(config.endpoints.auth.login, {
         method: 'POST',
-        body: JSON.stringify({ email, password }),
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email, password })
       });
-      
-      if (!response.ok) {
-        const error = await response.json();
-        errorMessage = error;
-        throw new Error(error.error || 'Login failed');
-      }
 
       const data = await response.json();
-      
-      // Store user data and tokens
-      await userStore.login(data.user, {
+
+      if (!response.ok) {
+        errorMessage = data;
+        throw new Error(data.error || 'Login failed');
+      }
+
+      // Update user store with the response data
+      userStore.login(data.user, {
         accessToken: data.accessToken,
         refreshToken: data.refreshToken
       }).then(() => {
-        // Redirect to dashboard in the app group
+        // Redirect to dashboard
         goto(`/${lang}/in`);
       });
-      
     } catch (error) {
       console.error('Login error:', error);
       error instanceof Error ? errorMessage = error : errorMessage = { message: 'Login failed', name: 'Login failed' };
     } finally {
       isLoading = false;
     }
+    //   const response = await api(config.endpoints.auth.login, {
+    //     requireAuth: false,
+    //     method: 'POST',
+    //     body: JSON.stringify({ email, password }),
+    //   });
+      
+    //   if (!response.ok) {
+    //     const error = await response.json();
+    //     errorMessage = error;
+    //     throw new Error(error.error || 'Login failed');
+    //   }
+
+    //   const data = await response.json();
+      
+    //   // Store user data and tokens
+    //   await userStore.login(data.user, {
+    //     accessToken: data.accessToken,
+    //     refreshToken: data.refreshToken
+    //   }).then(() => {
+    //     // Redirect to dashboard in the app group
+    //     goto(`/${lang}/in`);
+    //   });
+      
+    // } catch (error) {
+    //   console.error('Login error:', error);
+    //   error instanceof Error ? errorMessage = error : errorMessage = { message: 'Login failed', name: 'Login failed' };
+    // } finally {
+    //   isLoading = false;
+    // }
   };
 </script>
 
@@ -109,7 +136,7 @@
       </Button>
     </form>
     <Separator label="Or" class="my-4" />
-    <div class="flex flex-col gap-3">
+    <!-- <div class="flex flex-col gap-3">
       <Button
         variant="gray"
         size="lg"
@@ -118,10 +145,10 @@
           /* Add Google login handler */
         }}
       >
-        <!-- <GoogleIcon class="size-6" /> -->
+        <! -- <GoogleIcon class="size-6" /> -- >
         Continue with Google
       </Button>
-    </div>
+    </div> -->
     <p class="text-center text-md">
       No account?{" "}
       <a href={`/${lang}/signup`}>Register</a>

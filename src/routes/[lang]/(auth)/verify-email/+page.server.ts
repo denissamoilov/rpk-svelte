@@ -13,7 +13,7 @@ interface VerificationResponse {
   };
 }
 
-export const load: PageServerLoad = async ({ url, fetch }) => {
+export const load: PageServerLoad = async ({ url, fetch, cookies }) => {
   const token = url.searchParams.get("token");
 
   if (!token) {
@@ -42,6 +42,12 @@ export const load: PageServerLoad = async ({ url, fetch }) => {
     //     user: data.user,
     //   };
     // }
+    if (data.success && data.user) {
+      cookies.set("auth_token", token, {
+        path: "/",
+        maxAge: 60 * 60 * 24 * 7, // 7 days
+      });
+    }
 
     return {
       success: data.success,
