@@ -120,19 +120,46 @@ function createUserStore() {
     user: () => {
       return get(userStore).user;
     },
-    login: async (userData: User, tokens: AuthTokens) => {
-      const newState = {
-        user: userData,
-        tokens,
-        isAuthenticated: true,
-        isLoading: false,
-      };
-      set(newState);
+    login: async(email: string, password: string) => {
+      try {
+        const response = await api(config.endpoints.local.login, {
+          method: 'POST',
+          requireAuth: false,
+          body: JSON.stringify({ email, password })
+        })
 
-      if (typeof window !== "undefined") {
-        localStorage.setItem("user", JSON.stringify(userData));
-        localStorage.setItem("tokens", JSON.stringify(tokens));
+        const data = await response.json();
+
+        console.log("data :: ", data)
+
+        if(!data.success) {
+          throw new Error(data.message || 'Login failed');
+        }
+
+        const newState = {
+          user: data.user,
+          tokens: {
+            accessToken: data.accessToken,
+            refreshToken: data.refreshToken
+          },
+          isAuthenticated: true,
+          isLoading: false,
+        };
+        set(newState);
+
+        if(typeof window !== undefined) {
+          localStorage.setItem("user", JSON.stringify(data.user));
+          localStorage.setItem("tokens", JSON.stringify({
+            accessToken: data.accessToken,
+            refreshToken: data.refreshToken
+          }));
+        }
+        return data;
+      } catch(error) {
+        console.error('Login error:', error);
+        throw new Error('Login failed');
       }
+      
     },
     logout: () => {
       set({

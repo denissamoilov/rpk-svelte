@@ -1,12 +1,9 @@
 <script lang="ts">
-  import { signIn } from "@auth/sveltekit/client"
   import { Input, Button, Separator } from "$components";
   import { Alert, AlertDescription, AlertTitle } from "$components/alert";
   import { page } from "$app/stores";
   import { goto } from '$app/navigation';
   import { userStore } from "$lib/stores/user";
-  import { api } from "$lib/api";
-  import { config } from "$lib/config";
 
   let email = '';
   let password = '';
@@ -18,64 +15,16 @@
     e.preventDefault();
     isLoading = true;
     errorMessage = { message: '', name: '' };
-    
+
     try {
-      const response = await fetch(config.endpoints.auth.login, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email, password })
-      });
-
-      const data = await response.json();
-
-      if (!response.ok) {
-        errorMessage = data;
-        throw new Error(data.error || 'Login failed');
-      }
-
-      // Update user store with the response data
-      userStore.login(data.user, {
-        accessToken: data.accessToken,
-        refreshToken: data.refreshToken
-      }).then(() => {
-        // Redirect to dashboard
-        goto(`/${lang}/in`);
-      });
-    } catch (error) {
+      await userStore.login(email, password);
+      goto(`/${lang}/in`);
+    } catch(error) {
       console.error('Login error:', error);
       error instanceof Error ? errorMessage = error : errorMessage = { message: 'Login failed', name: 'Login failed' };
     } finally {
       isLoading = false;
     }
-    //   const response = await api(config.endpoints.auth.login, {
-    //     requireAuth: false,
-    //     method: 'POST',
-    //     body: JSON.stringify({ email, password }),
-    //   });
-      
-    //   if (!response.ok) {
-    //     const error = await response.json();
-    //     errorMessage = error;
-    //     throw new Error(error.error || 'Login failed');
-    //   }
-
-    //   const data = await response.json();
-      
-    //   // Store user data and tokens
-    //   await userStore.login(data.user, {
-    //     accessToken: data.accessToken,
-    //     refreshToken: data.refreshToken
-    //   }).then(() => {
-    //     // Redirect to dashboard in the app group
-    //     goto(`/${lang}/in`);
-    //   });
-      
-    // } catch (error) {
-    //   console.error('Login error:', error);
-    //   error instanceof Error ? errorMessage = error : errorMessage = { message: 'Login failed', name: 'Login failed' };
-    // } finally {
-    //   isLoading = false;
-    // }
   };
 </script>
 
@@ -126,6 +75,7 @@
         </a>
       </div>
       <Button
+        on:click={handleSubmit}
         type="submit"
         size="lg"
         disabled={isLoading}

@@ -2,6 +2,7 @@ import { json } from '@sveltejs/kit';
 import type { RequestHandler } from './$types';
 import { api } from '$lib/api';
 import { config } from '$lib/config';
+import { setSessionTokenCookie } from '$lib/session';
 
 export const POST: RequestHandler = async ({ request, cookies }) => {
   try {
@@ -22,11 +23,7 @@ export const POST: RequestHandler = async ({ request, cookies }) => {
       );
     }
 
-    // Set auth token in cookies
-    cookies.set('auth_token', data.accessToken, {
-      path: '/',
-      maxAge: 60 * 60 * 24 * 7 // 7 days
-    });
+    setSessionTokenCookie('auth_token', cookies, data.accessToken, new Date(Date.now() + 60 * 60 * 24 * 7 * 1000));
 
     return json({
       success: true,

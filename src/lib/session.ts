@@ -1,11 +1,12 @@
-import type { RequestEvent } from "@sveltejs/kit";
+import type { Cookies } from "@sveltejs/kit";
 
 export function setSessionTokenCookie(
-  event: RequestEvent,
+  cookieName: string,
+  cookies: Cookies,
   token: string,
   expiresAt: Date
 ): void {
-  event.cookies.set("session", token, {
+  cookies.set(cookieName, token, {
     httpOnly: true,
     sameSite: "lax",
     expires: expiresAt,
@@ -13,8 +14,8 @@ export function setSessionTokenCookie(
   });
 }
 
-export function deleteSessionTokenCookie(event: RequestEvent): void {
-  event.cookies.set("session", "", {
+export function deleteSessionTokenCookie(cookies: Cookies, cookieName: string): void {
+  cookies.set(cookieName, "", {
     httpOnly: true,
     sameSite: "lax",
     maxAge: 0,

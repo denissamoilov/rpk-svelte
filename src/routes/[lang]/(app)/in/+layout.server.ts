@@ -1,25 +1,26 @@
 import { api } from "$lib/api";
 import { config } from "$lib/config";
 
-export async function load({params, cookies}) {
+export async function load({params, fetch}) {
   const companyId = params.id;
 
   try {
-    const response = await api(config.endpoints.company.getCompanyList, {   
-      method: "GET",
-      server: {
-        locals: {
-          token: cookies.get("auth_token")
-        }
-      }
-    });
+    const response = await fetch(config.endpoints.local.getCompanyList);
 
     if (!response.ok) {
       throw new Error("Failed to fetch companies");
     }
 
-    const companies = await response.json();
-    return { companies, selectedCompanyId: companyId };
+    const data = await response.json();
+    console.log("companies :: ", data)
+    return {
+      data: {
+        companies: data.companies, selectedCompanyId: companyId
+      },
+      headers: {
+        'cache-control': 'max-age=3600',
+      }
+    };
   } catch (error) {
     console.error("Error fetching user companies:", error);
   }

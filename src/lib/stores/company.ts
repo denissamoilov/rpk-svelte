@@ -36,9 +36,16 @@ function createCompanyStore() {
     getCompanyList: async () => {
       update((state) => ({ ...state, isLoading: true, error: null }));
 
+      console.log("getCompanyList storedTokens :: ", storedTokens)
+
       try {
-        const response = await api(config.endpoints.company.getCompanyList, {
+        const response = await api(config.endpoints.local.getCompanyList, {
           method: "GET",
+          server: {
+            locals: {
+              token: storedTokens!
+            }
+          }
         });
 
         if (!response.ok) {
@@ -64,6 +71,13 @@ function createCompanyStore() {
       } finally {
         update((state) => ({ ...state, isLoading: false }));
       }
+    },
+    setCompanyList: (companies: Company[]) => {
+      update((state) => ({
+        ...state,
+        companies,
+        selectedCompany: state.selectedCompany || companies[0] || null
+      }));
     },
     createCompany: async (data: Partial<Company>) => {
       update((state) => ({ ...state, isLoading: true, error: null}));

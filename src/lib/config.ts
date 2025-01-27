@@ -3,8 +3,14 @@ import { PUBLIC_BACKEND_URL } from "$env/static/public";
 export const config = {
   apiUrl: PUBLIC_BACKEND_URL,
   endpoints: {
+    local: {
+      login: "/api/login",
+      logout: "/api/logout",
+      getCompanyList: "/api/company/list",
+    },
     auth: {
       login: "/api/login",
+      logout: "/api/logout",
       signup: "/api/signup",
       refreshToken: "/api/refresh-token",
       verifyEmail: "/api/verify-email",

@@ -17,13 +17,13 @@
   //   console.error("Error fetching user companies:", error);
   // }
 
-  onMount(async () => {
-    try {
-      await companyStore.getCompanyList();
-    } catch (error) {
-      console.error("Error fetching user companies::", error);
-    }
-  })
+  // onMount(async () => {
+  //   try {
+  //     await companyStore.getCompanyList();
+  //   } catch (error) {
+  //     console.error("Error fetching user companies::", error);
+  //   }
+  // })
 
   onMount(() => {
     // Check if user is authenticated

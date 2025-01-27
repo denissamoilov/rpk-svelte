@@ -5,13 +5,14 @@
   import { LanguageSelector } from '$entities/LanguageSelector';
   import { page } from '$app/stores';
   import { PlusIcon } from 'lucide-svelte';
-  import { userStore } from '$lib/stores/user';
+  import { companyStore } from '$lib/stores/company';
   const {lang, id} = $page.params;
-  const { user } = $userStore;
+  const companyList = [];
+  // console.log("companyList :: ", $companyStore)
 </script>
 
 <aside class={"sticky top-14 h-full flex flex-col p-3 bg-neutral-900 rounded-xl max-w-xs gap-6 items-start justify-between transition-all duration-300 w-64"}>
-  {#if user?.companies.length}
+  {#if companyList.length}
     <SelectCompanyDropdown />
   {:else}
     <Button leftIcon={PlusIcon} variant="primary" class="w-full">Add Company</Button>

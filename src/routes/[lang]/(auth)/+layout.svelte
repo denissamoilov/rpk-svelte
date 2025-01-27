@@ -37,6 +37,6 @@
   {/each}
 </div> -->
 
-    <img src={signup} alt="Raamatupidamiskeskus logo" />
+    <img src={signup} alt="Raamatupidamiskeskus" />
   </div>
 </div>
