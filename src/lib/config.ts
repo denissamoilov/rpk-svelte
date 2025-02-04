@@ -18,7 +18,7 @@ export const config = {
       forgotPassword: "/api/forgot-password",
     },
     company: {
-      getCompanyList: "/api/company/list",
+      getCompanyList: "/user/company-list",
       createCompany: "/api/company/create",
       getCompany: "/api/company/:id",
       updateCompany: "/api/company/update",

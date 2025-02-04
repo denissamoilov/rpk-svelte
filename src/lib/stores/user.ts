@@ -15,16 +15,11 @@ interface User {
   companies: SelectOptionType[]
 }
 
-interface AuthTokens {
-  accessToken: string;
-  refreshToken: string;
-}
-
 interface UserStore {
   user: User | null;
   isAuthenticated: boolean;
   isLoading?: boolean;
-  tokens: AuthTokens | null;
+  token: string | null;
 }
 
 // Function to decode JWT token and get expiration time
@@ -56,17 +51,15 @@ function shouldRefreshToken(token: string): boolean {
   return Date.now() + fiveMinutes >= expiration;
 }
 
-async function refreshAccessToken(
-  refreshToken: string
-): Promise<AuthTokens | null> {
+async function refreshAccessToken(): Promise<string | null> {
   try {
     const response = await api(config.endpoints.auth.refreshToken, {
       requireAuth: false,
       method: "POST",
+      credentials: 'include',
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ refreshToken }),
     });
 
     const data = await response.json();
@@ -75,10 +68,7 @@ async function refreshAccessToken(
       throw new Error("Failed to refresh token");
     }
 
-    return {
-      accessToken: data.accessToken,
-      refreshToken: data.refreshToken || refreshToken, // Use new refresh token if provided
-    };
+    return data.accessToken;
   } catch (error) {
     console.error("Token refresh failed:", error);
     return null;
@@ -89,13 +79,13 @@ function createUserStore() {
   // Initialize from localStorage if available
   const storedUser =
     typeof window !== "undefined" ? localStorage.getItem("user") : null;
-  const storedTokens =
-    typeof window !== "undefined" ? localStorage.getItem("tokens") : null;
+  const storedToken =
+    typeof window !== "undefined" ? localStorage.getItem("token") : null;
 
   const initialState: UserStore = {
     user: storedUser ? JSON.parse(storedUser) : null,
-    tokens: storedTokens ? JSON.parse(storedTokens) : null,
-    isAuthenticated: !!storedUser && !!storedTokens,
+    token: storedToken ? JSON.parse(storedToken) : null,
+    isAuthenticated: !!storedUser && !!storedToken,
     isLoading: true,
   };
 
@@ -107,8 +97,8 @@ function createUserStore() {
     setInterval(() => {
       const state = get(userStore);
       if (
-        state.tokens?.accessToken &&
-        shouldRefreshToken(state.tokens.accessToken)
+        state.token &&
+        shouldRefreshToken(state.token)
       ) {
         userStore.updateTokens(true).catch(console.error);
       }
@@ -122,9 +112,13 @@ function createUserStore() {
     },
     login: async(email: string, password: string) => {
       try {
-        const response = await api(config.endpoints.local.login, {
+        // const response = await api(config.endpoints.local.login, {
+        //   method: 'POST',
+        //   requireAuth: false,
+        //   body: JSON.stringify({ email, password })
+        // })
+        const response = await fetch('/api/login', {
           method: 'POST',
-          requireAuth: false,
           body: JSON.stringify({ email, password })
         })
 
@@ -138,10 +132,7 @@ function createUserStore() {
 
         const newState = {
           user: data.user,
-          tokens: {
-            accessToken: data.accessToken,
-            refreshToken: data.refreshToken
-          },
+          token: data.accessToken,
           isAuthenticated: true,
           isLoading: false,
         };
@@ -149,10 +140,6 @@ function createUserStore() {
 
         if(typeof window !== undefined) {
           localStorage.setItem("user", JSON.stringify(data.user));
-          localStorage.setItem("tokens", JSON.stringify({
-            accessToken: data.accessToken,
-            refreshToken: data.refreshToken
-          }));
         }
         return data;
       } catch(error) {
@@ -164,7 +151,7 @@ function createUserStore() {
     logout: () => {
       set({
         user: null,
-        tokens: null,
+        token: null,
         isAuthenticated: false,
         isLoading: false,
       });
@@ -190,17 +177,18 @@ function createUserStore() {
     },
     updateTokens: async (force = false) => {
       const state = get(userStore);
-      if (!state.tokens?.refreshToken) return false;
+      if (!state.token) return false;
 
       // Check if token needs refresh
-      if (!force && state.tokens.accessToken) {
-        if (!shouldRefreshToken(state.tokens.accessToken)) {
+      if (!force && state.token) {
+        if (!shouldRefreshToken(state.token)) {
           return true; // Token is still valid
         }
       }
 
-      const newTokens = await refreshAccessToken(state.tokens.refreshToken);
-      if (!newTokens) {
+      const newToken = await refreshAccessToken();
+
+      if (!newToken) {
         // If refresh failed, log out
         userStore.logout();
         return false;
@@ -208,26 +196,22 @@ function createUserStore() {
 
       update((state) => ({
         ...state,
-        tokens: newTokens,
+        token: newToken,
       }));
-
-      if (typeof window !== "undefined") {
-        localStorage.setItem("tokens", JSON.stringify(newTokens));
-      }
 
       return true;
     },
     getAccessToken: async () => {
       const state = get(userStore);
-      if (!state.tokens?.accessToken) return null;
+      if (!state.token) return null;
 
       // Check if token needs refresh
-      if (shouldRefreshToken(state.tokens.accessToken)) {
+      if (shouldRefreshToken(state.token)) {
         const success = await userStore.updateTokens(true);
         if (!success) return null;
       }
 
-      return get(userStore).tokens?.accessToken || null;
+      return get(userStore).token || null;
     },
     setLoading: (isLoading: boolean) => {
       update((state) => ({ ...state, isLoading }));

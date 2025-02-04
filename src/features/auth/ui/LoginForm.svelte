@@ -12,7 +12,6 @@
   let lang = $page.params.lang;
 
   const handleSubmit = async (e: Event) => {
-    e.preventDefault();
     isLoading = true;
     errorMessage = { message: '', name: '' };
 
@@ -29,7 +28,7 @@
 </script>
 
 <div class="flex flex-col gap-4 w-full">
-  <form class="flex flex-col gap-4" on:submit={handleSubmit}>
+  <form class="flex flex-col gap-4" on:submit|preventDefault={handleSubmit}>
     <Input
       type="email"
       placeholder="Email"
