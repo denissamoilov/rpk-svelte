@@ -1,4 +1,4 @@
-import { userStore } from "./stores/user";
+import { authStore } from "./stores/auth";
 import { getApiUrl } from "./config";
 
 interface FetchOptions extends RequestInit {
@@ -25,7 +25,7 @@ export async function api(endpoint: string, options: FetchOptions = {}) {
     if (options.server?.locals?.token) {
       headers.set("Authorization", `Bearer ${options.server.locals.token}`);
     } else {
-      const token = await userStore.getAccessToken();
+      const token = await authStore.getAccessToken();
       if (!token) throw new Error("No authentication token available");
       headers.set("Authorization", `Bearer ${token}`);
     }
@@ -40,10 +40,10 @@ export async function api(endpoint: string, options: FetchOptions = {}) {
   // Handle 401 (Unauthorized) by attempting to refresh token and retry
   if (response.status === 401 && requireAuth) {
     // Try to refresh the token
-    const success = await userStore.updateTokens(true);
+    const success = await authStore.refreshToken();
     if (success) {
       // Retry the request with new token
-      const token = await userStore.getAccessToken();
+      const token = await authStore.getAccessToken();
       headers.set("Authorization", `Bearer ${token}`);
       return fetch(url, {
         ...fetchOptions,

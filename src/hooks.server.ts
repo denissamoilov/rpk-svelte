@@ -7,7 +7,6 @@ export const handle: Handle = async ({ event, resolve }) => {
 
   if(!accessToken) {
     const refreshToken = event.cookies.get('refreshToken');
-    console.log('Refresh token from cookies:', refreshToken);
     // if (!refreshToken) return;
 
     const res = await fetch(`${PUBLIC_BACKEND_URL}${config.endpoints.auth.refreshToken}`, {

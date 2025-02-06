@@ -13,7 +13,7 @@
 
 </script>
 <div class="grid grid-cols-[16rem_1fr] flex-1 gap-6 px-3 pb-3 h-full">
-  <!-- <BackofficeSidebar /> -->
+  <BackofficeSidebar />
   <main class="flex flex-col flex-1 items-center">
     <div class="grow">
       {@render children()}

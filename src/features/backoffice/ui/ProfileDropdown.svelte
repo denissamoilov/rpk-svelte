@@ -1,7 +1,9 @@
 <script lang="ts">
   import { DropdownMenu, DropdownMenuContent, DropdownMenuGroup, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuItem, DropdownMenuTrigger, Avatar, AvatarFallback } from '$components';
   import { userStore } from '$lib/stores/user';
+  import { authStore } from '$lib/stores/auth';
   import { ChevronDown } from 'lucide-svelte';
+  console.log("user :: ", userStore.user())
 </script>
 
 <DropdownMenu>
@@ -23,7 +25,7 @@
       <DropdownMenuItem>Profile</DropdownMenuItem>
       <DropdownMenuItem>Settings</DropdownMenuItem>
       <DropdownMenuSeparator />
-      <DropdownMenuItem on:click={() => userStore.logout()}>Logout</DropdownMenuItem>
+      <DropdownMenuItem on:click={() => authStore.logout()}>Logout</DropdownMenuItem>
     </DropdownMenuGroup>
   </DropdownMenuContent>
 </DropdownMenu>

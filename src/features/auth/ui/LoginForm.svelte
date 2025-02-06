@@ -3,7 +3,7 @@
   import { Alert, AlertDescription, AlertTitle } from "$components/alert";
   import { page } from "$app/stores";
   import { goto } from '$app/navigation';
-  import { userStore } from "$lib/stores/user";
+  import { authStore } from "$lib/stores/auth";
 
   let email = '';
   let password = '';
@@ -16,7 +16,7 @@
     errorMessage = { message: '', name: '' };
 
     try {
-      await userStore.login(email, password);
+      await authStore.login(email, password);
       goto(`/${lang}/in`);
     } catch(error) {
       console.error('Login error:', error);

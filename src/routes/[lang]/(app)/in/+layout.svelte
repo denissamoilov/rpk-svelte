@@ -1,33 +1,32 @@
 <script lang="ts">
-  import { userStore } from '$lib/stores/user';
   import { companyStore } from '$lib/stores/company';
+  import { authStore } from '$lib/stores/auth';
   import { goto } from '$app/navigation';
   import { page } from '$app/stores';
   import { onMount } from 'svelte';
-  import { BackofficeSidebar, Footer, Header } from '$features';
+  import { Header } from '$features';
   import type { LayoutData } from './$types';
 
   let { data, children } = $props<{ data: LayoutData }>();
 
-  let companyList = $derived($companyStore.companies);
-
-  // try {
-  //   await companyStore.getCompanyList();
-  // } catch (error) {
-  //   console.error("Error fetching user companies:", error);
-  // }
-
-  // onMount(async () => {
-  //   try {
-  //     await companyStore.getCompanyList();
-  //   } catch (error) {
-  //     console.error("Error fetching user companies::", error);
-  //   }
-  // })
+  // Update company store when data changes
+  $effect(() => {
+    if (data?.companies) {
+      companyStore.setCompanyList(data.companies);
+      
+      // Set selected company if provided
+      if (data.selectedCompanyId) {
+        const selectedCompany = data.companies.find(c => c.id === data.selectedCompanyId);
+        if (selectedCompany) {
+          companyStore.setSelectedCompany(selectedCompany);
+        }
+      }
+    }
+  })
 
   onMount(() => {
     // Check if user is authenticated
-    const unsubscribe = userStore.subscribe(({ isAuthenticated }) => {
+    const unsubscribe = authStore.subscribe(({ isAuthenticated }) => {
       if (!isAuthenticated) {
         const lang = $page.params.lang;
         goto(`/${lang}/login`);

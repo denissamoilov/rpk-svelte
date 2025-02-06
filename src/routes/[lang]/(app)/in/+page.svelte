@@ -4,13 +4,8 @@
   import { ArrowRightIcon } from 'lucide-svelte';
 
   let { data } = $props();
-  // const companyList = $derived($companyStore.companies);
-  const companyList: Company[] = Object.values(data.data?.companies);
+  const companyList = $derived($companyStore.companies);
   const lang = data.locale;
-
-  $effect(() => {
-    data.data?.companies && companyStore.setCompanyList(data.data.companies);
-  });
 </script>
 
 <div class="flex flex-col gap-6 max-w-md m-auto">

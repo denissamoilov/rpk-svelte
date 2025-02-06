@@ -7,7 +7,7 @@
   import { PlusIcon } from 'lucide-svelte';
   import { companyStore } from '$lib/stores/company';
   const {lang, id} = $page.params;
-  const companyList = [];
+  const companyList = $derived($companyStore.companies);
   // console.log("companyList :: ", $companyStore)
 </script>
 

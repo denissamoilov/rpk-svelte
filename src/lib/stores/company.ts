@@ -149,15 +149,16 @@ function createCompanyStore() {
     },
     fetchCompany: async (id: string) => {
       update((state) => ({ ...state, isLoading: true, error: null }));
+      console.log("store fetchCompany id :: ", id)
       try {
-        const response = await api(config.endpoints.company.getCompany.replace(':id', id), {
-          method: "GET",
-          server: {
-            locals: {
-              token: storedTokens!
-            }
-          }
-        });
+        // const response = await api(config.endpoints.company.getCompany.replace(':id', id), {
+        //   method: "GET",
+        //   credentials: 'include',
+        // });
+
+        const response = await fetch(`/api/company/${id}`, {
+          method: 'GET',
+      });
 
         const data = await response.json();
 

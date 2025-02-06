@@ -6,7 +6,6 @@ import { config } from '$lib/config';
 import { setSessionTokenCookie } from '$lib/session';
 
 export const POST: RequestHandler = async ({ request, cookies }) => {
-
   try {
     const body = await request.json();
 
@@ -49,6 +48,7 @@ export const POST: RequestHandler = async ({ request, cookies }) => {
 
     return json({
       success: true,
+      accessToken: data.accessToken,
       user: data.user,
     });
   } catch (error) {

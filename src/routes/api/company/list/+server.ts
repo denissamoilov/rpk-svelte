@@ -8,22 +8,32 @@ export async function GET({ request, cookies }) {
   try {
 
     const accessToken = cookies.get('accessToken');
-    console.log("access token :: ", accessToken)
+
     if (!accessToken) {
       return json({ success: false, message: 'Not authenticated' }, { status: 401 });
     }
 
-    const response = await fetch(`${PUBLIC_BACKEND_URL}/api/company/list`, {
+    // const response = await fetch(getApiUrl(config.endpoints.company.getUserCompanyList), {
+    // // const response = await fetch(`${PUBLIC_BACKEND_URL}/api/company/list`, {
+    //   method: 'GET',
+    //   headers: {
+    //     'Content-Type': 'application/json',
+    //     'Authorization': `Bearer ${accessToken}`
+    //   },
+    //   credentials: 'include'
+    // })
+
+    const response = await api(config.endpoints.company.getUserCompanyList, {
       method: 'GET',
-      headers: {
-        'Content-Type': 'application/json',
-        'Authorization': `Bearer ${accessToken}`
-      },
-      credentials: 'include'
+      credentials: 'include',
+      server: {
+        locals: {
+          token: accessToken
+        }
+      }
     })
 
     const data = await response.json();
-    console.log("data :: ", data)
 
     if(!data.success) {
       return json(

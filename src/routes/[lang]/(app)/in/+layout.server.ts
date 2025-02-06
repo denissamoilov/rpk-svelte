@@ -1,4 +1,3 @@
-import { api } from "$lib/api";
 import { config } from "$lib/config";
 
 export async function load({params, fetch}) {
@@ -18,22 +17,16 @@ export async function load({params, fetch}) {
     }
 
     const data = await response.json();
-    console.log("companies :: ", data)
+
     return {
-      data: {
-        companies: data.companies, selectedCompanyId: companyId
-      },
-      headers: {
-        'cache-control': 'max-age=3600',
-      }
+      companies: data.companies,
+      selectedCompanyId: companyId
     };
   } catch (error) {
     console.error("Error fetching user companies:", error);
     return {
-      data: {
-        companies: [],
-        selectedCompanyId: companyId
-      }
+      companies: [],
+      selectedCompanyId: companyId
     };
   }
 }
