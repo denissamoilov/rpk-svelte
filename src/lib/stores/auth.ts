@@ -58,6 +58,27 @@ const createAuthStore = () => {
 
     return {
         subscribe,
+        fetchUser: async () => {
+          try {
+            const response = await api(config.endpoints.user.me, {
+                method: 'GET',
+                requireAuth: true
+            });
+
+            const data = await response.json();
+
+            if (!response.ok) {
+                throw new Error(data.message || 'Failed to fetch user data');
+            }
+
+            // Update user data
+            userStore.setUser(data.user);
+            return data.user;
+          } catch (error) {
+            console.error('Error fetching user data:', error);
+            return null;
+          }
+        },
         getAccessToken: async () => {
             const state = get(authStore);
             if (!state.accessToken) return null;
