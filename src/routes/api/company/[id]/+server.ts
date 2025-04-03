@@ -23,8 +23,6 @@ export const GET: RequestHandler = async ({ params, cookies }) => {
       }
     })
 
-    console.log("resposns :: ", response)
-
     if (!response.ok) {
       const error = await response.json();
       return json(

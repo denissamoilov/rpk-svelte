@@ -2,8 +2,7 @@ import { json } from '@sveltejs/kit';
 import type { RequestHandler } from './$types';
 import { NODE_ENV } from '$env/static/private';
 import { api } from '$lib/api';
-import { config } from '$lib/config';
-import { setSessionTokenCookie } from '$lib/session';
+import { config, getApiUrl } from '$lib/config';
 
 export const POST: RequestHandler = async ({ request, cookies }) => {
   try {
@@ -16,7 +15,7 @@ export const POST: RequestHandler = async ({ request, cookies }) => {
       credentials: 'include'
     });
 
-    // const response = await fetch(config.endpoints.auth.login, {
+    // const response = await fetch(getApiUrl(config.endpoints.auth.login), {
     //   method: 'POST',
     //   headers: { 'Content-Type': 'application/json' },
     //   body: JSON.stringify(body),
@@ -48,7 +47,6 @@ export const POST: RequestHandler = async ({ request, cookies }) => {
 
     return json({
       success: true,
-      accessToken: data.accessToken,
       user: data.user,
     });
   } catch (error) {

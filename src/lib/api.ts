@@ -26,6 +26,8 @@ export async function api(endpoint: string, options: FetchOptions = {}) {
       headers.set("Authorization", `Bearer ${options.server.locals.token}`);
     } else {
       const token = await authStore.getAccessToken();
+
+      console.log("headers :: ", token)
       if (!token) throw new Error("No authentication token available");
       headers.set("Authorization", `Bearer ${token}`);
     }
