@@ -15,7 +15,10 @@ export interface Company {
 
 interface CompanyStore {
   companies: Company[];
-  selectedCompany: Company | null;
+  selectedCompany: {
+    success: boolean;
+    company: Company | null;
+  }
   isLoading: boolean;
   error: string | null;
 }
@@ -23,7 +26,10 @@ interface CompanyStore {
 function createCompanyStore() {
   const { subscribe, set, update } = writable<CompanyStore>({
     companies: [],
-    selectedCompany: null,
+    selectedCompany: {
+      success: false,
+      company: null
+    },
     isLoading: false,
     error: null,
   });
@@ -132,7 +138,7 @@ function createCompanyStore() {
             company.id === id ? { ...company, ...updatedCompany } : company
           ),
           selectedCompany:
-            state.selectedCompany?.id === id
+            state.selectedCompany?.company?.id === id
               ? { ...state.selectedCompany, ...updatedCompany }
               : state.selectedCompany,
         }));
@@ -177,7 +183,7 @@ function createCompanyStore() {
       }
     },
     setSelectedCompany: (company: Company | null) => {
-      update((state) => ({ ...state, selectedCompany: company }));
+      update((state) => ({ ...state, selectedCompany: { success: true, company: company } }));
     },
   };
 }

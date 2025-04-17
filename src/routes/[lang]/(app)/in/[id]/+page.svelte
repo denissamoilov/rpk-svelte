@@ -1,14 +1,14 @@
 <!-- src/routes/[lang]/in/[id]/+page.svelte -->
 <script lang="ts">
-  import { companyStore } from '$lib/stores/company';
+  let { data } = $props<{ data: { company: any } }>();
+  let company = $derived(data.company);
 
-  let company = $derived($companyStore.selectedCompany);
-
+  console.log("company :: ", company.company);
 </script>
 
 <div>
-  {#if company}
-    <h1>{company.name}</h1>
+  {#if company.company}
+    <h1>{company.company.name}</h1>
     <!-- Add your company dashboard content here -->
   {:else}
     <p>Company not found</p>

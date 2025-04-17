@@ -7,16 +7,14 @@
   import { Building2Icon } from "lucide-svelte";
 
   let { size = "md" } = $props<{ size?: SelectSizeType}>();
-  
-  const currentCompanyId = $page.params.id;
-  const companies = $derived($companyStore.companies);
 
-  const selectOptions = $derived(companies.map(company => ({
+  let currentCompanyId = $derived($page.params.id);
+  let companies = $derived($companyStore.companies);
+  let selectOptions = $derived(companies.map(company => ({
     value: company.id,
     label: company.name
   })));
-
-  const selectedCompany: SelectOptionType | undefined = $derived(selectOptions?.find(c => String(c.value) === currentCompanyId));
+  let selectedCompany = $derived(selectOptions.find(c => String(c.value) === currentCompanyId));
 
   const changeCompany = (company: SelectOptionType) => {
     const lang = $page.params.lang;

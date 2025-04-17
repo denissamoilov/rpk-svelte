@@ -20,7 +20,7 @@
   </main>
   <div
     class={cn(
-      "flex flex-col items-center justify-center w-full min-h-full",
+      "flex flex-col gap-6 items-center justify-center w-full min-h-full",
       // "bg-neutral-900 rounded-xl flex flex-col items-center justify-center w-full min-h-full",
       // "[background-color:hsla(203,88%,47%,1)]",
       // "[background-image:radial-gradient(circle_at_102%_80%,_hsla(269,66%,59%,1)_0%,_transparent_40.31%),_radial-gradient(circle_at_16%_46%,_hsla(0,0%,98%,0.64)_0%,_transparent_50%)]",

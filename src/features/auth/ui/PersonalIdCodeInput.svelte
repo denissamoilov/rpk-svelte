@@ -39,7 +39,6 @@
     type="text"
     placeholder="Personal ID Code"
     size="lg"
-    label="Personal ID Code"
     maxlength={maxLength}
     minlength={maxLength}
     {required}

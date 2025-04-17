@@ -68,7 +68,6 @@
         type="text"
         placeholder="Name"
         size="lg"
-        label="Name"
         bind:value={name}
         required
       />
@@ -76,7 +75,6 @@
         type="text"
         placeholder="Surname"
         size="lg"
-        label="Surname"
         bind:value={surname}
         required
       />
@@ -85,7 +83,6 @@
         type="email"
         placeholder="Email"
         size="lg"
-        label="Email"
         bind:value={email}
         required
       />
@@ -95,7 +92,6 @@
           type="password"
           placeholder="Password"
           size="lg"
-          label="Password"
           bind:value={password}
           required
         />

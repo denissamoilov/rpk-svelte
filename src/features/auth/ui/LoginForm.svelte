@@ -33,7 +33,6 @@
       type="email"
       placeholder="Email"
       size="lg"
-      label="Email"
       bind:value={email}
       required
     />
@@ -42,7 +41,6 @@
       type="password"
       placeholder="Password"
       size="lg"
-      label="Password"
       bind:value={password}
       required
     />
@@ -74,7 +72,6 @@
         </a>
       </div>
       <Button
-        on:click={handleSubmit}
         type="submit"
         size="lg"
         disabled={isLoading}
@@ -85,7 +82,7 @@
       </Button>
     </form>
     <Separator label="Or" class="my-4" />
-    <!-- <div class="flex flex-col gap-3">
+    <div class="flex flex-col gap-3">
       <Button
         variant="gray"
         size="lg"
@@ -94,10 +91,10 @@
           /* Add Google login handler */
         }}
       >
-        <! -- <GoogleIcon class="size-6" /> -- >
+        <!-- <GoogleIcon class="size-6" /> -->
         Continue with Google
       </Button>
-    </div> -->
+    </div>
     <p class="text-center text-md">
       No account?{" "}
       <a href={`/${lang}/signup`}>Register</a>
