@@ -92,6 +92,7 @@ function createCompanyStore() {
         const response = await api(config.endpoints.company.createCompany, {
           method: "POST",
           body: JSON.stringify(data),
+          requireAuth: true
         });
 
         if(!response.ok) {

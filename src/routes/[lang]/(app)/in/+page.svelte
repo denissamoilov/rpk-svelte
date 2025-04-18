@@ -1,7 +1,9 @@
 <script lang="ts">
+    import { Separator } from '$components';
+  import Button from '$components/button/button.svelte';
   import { CompanyCreateForm } from '$features';
-  import { companyStore, type Company } from '$lib/stores/company';
-  import { ArrowRightIcon } from 'lucide-svelte';
+  import { companyStore } from '$lib/stores/company';
+  import { ArrowRightIcon, Building2Icon, PlusIcon } from 'lucide-svelte';
 
   let { data } = $props();
   const companyList = $derived($companyStore.companies);
@@ -24,5 +26,14 @@
         </a>
       {/each}
     </div>
+    <Separator label="Or" class="my-4" />
+    <Button
+      leftIcon={PlusIcon}
+      size="lg"
+      variant="primary"
+      href={`/${lang}/in/create`}
+    >
+      Add new company
+    </Button>
   {/if}
 </div>

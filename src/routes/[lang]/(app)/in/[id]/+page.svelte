@@ -2,8 +2,6 @@
 <script lang="ts">
   let { data } = $props<{ data: { company: any } }>();
   let company = $derived(data.company);
-
-  console.log("company :: ", company.company);
 </script>
 
 <div>

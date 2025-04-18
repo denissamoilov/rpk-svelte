@@ -3,7 +3,6 @@
   import { userStore } from '$lib/stores/user';
   import { authStore } from '$lib/stores/auth';
   import { ChevronDown } from 'lucide-svelte';
-  console.log("user :: ", userStore.user())
 </script>
 
 <DropdownMenu>

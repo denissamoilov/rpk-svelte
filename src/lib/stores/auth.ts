@@ -66,7 +66,6 @@ const createAuthStore = () => {
             });
 
             const data = await response.json();
-            console.log("fetchUser data :: ", data)
 
             if (!response.ok) {
                 throw new Error(data.message || 'Failed to fetch user data');
@@ -137,6 +136,7 @@ const createAuthStore = () => {
           try {
             const response = await fetch('/api/login', {
               method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
               body: JSON.stringify({ email, password })
             });
 
@@ -145,6 +145,8 @@ const createAuthStore = () => {
             if (!data.success) {
                 throw new Error(data.message || 'Login failed');
             }
+
+            console.log("login handler data :: ", data);
 
             // Set the access token
             if (browser) {

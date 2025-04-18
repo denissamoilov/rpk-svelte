@@ -11,9 +11,11 @@ export const POST: RequestHandler = async ({ request, cookies }) => {
     const response = await api(config.endpoints.auth.login, {
       requireAuth: false,
       method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(body),
       credentials: 'include'
     });
+    
 
     // const response = await fetch(getApiUrl(config.endpoints.auth.login), {
     //   method: 'POST',
@@ -23,6 +25,8 @@ export const POST: RequestHandler = async ({ request, cookies }) => {
     // })
 
     const data = await response.json();
+
+    console.log("POST response data :: ", data);
 
     if (!response.ok) {
       return json(
@@ -47,6 +51,7 @@ export const POST: RequestHandler = async ({ request, cookies }) => {
 
     return json({
       success: true,
+      accessToken: data.accessToken,
       user: data.user,
     });
   } catch (error) {

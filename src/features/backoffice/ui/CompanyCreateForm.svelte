@@ -14,7 +14,7 @@
   async function handleSubmit() {
     isLoading = true;
     try {
-      const company = await companyStore.createCompany({
+      const { company } = await companyStore.createCompany({
         name,
         registrationNumber,
         email,
@@ -68,7 +68,7 @@
     required
   />
 
-  <Button type="submit" disabled={isLoading}>
+  <Button type="submit" disabled={isLoading} size="lg">
     {isLoading ? 'Creating...' : 'Create Company'}
   </Button>
 </form>
