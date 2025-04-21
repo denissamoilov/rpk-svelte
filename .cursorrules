@@ -1,0 +1,287 @@
+{
+  "rules": {
+    "project_tracking": {
+      "description": "Project Tracking and Goal Alignment",
+      "enabled": true,
+      "rules": [
+        {
+          "description": "Regularly check project planning files:",
+          "files": [
+            "gpt-planning.md - Project overview and requirements",
+            "gpt-brainstorming.md - Feature brainstorming and decisions",
+            "gpt-milestone-planning.md - Development milestones",
+            "gpt-next-days-agenda.md - Immediate tasks",
+            "gpt-future-features.md - Future enhancements"
+          ]
+        },
+        {
+          "description": "Verify each implementation aligns with project goals and milestones"
+        },
+        {
+          "description": "Update agenda and milestone files when tasks are completed"
+        },
+        {
+          "description": "Suggest moving items between files when appropriate (e.g., from future-features to next-days-agenda)"
+        }
+      ]
+    },
+    "dependency_management": {
+      "description": "Package and Dependency Management",
+      "enabled": true,
+      "rules": [
+        {
+          "description": "Always check package.json before suggesting to install any package",
+          "steps": [
+            "Search package.json for the package name",
+            "Check both dependencies and devDependencies sections",
+            "Only suggest installation if the package is not already present",
+            "If found, note the existing version for compatibility"
+          ]
+        }
+      ]
+    },
+    "expertise": {
+      "description": "You are an expert in TypeScript, Node.js, Next.js App Router, React, Shadcn UI, Radix UI, Tailwind, and PayloadCMS.",
+      "enabled": true
+    },
+    "payloadcms_practices": {
+      "description": "PayloadCMS Development Guidelines",
+      "enabled": false,
+      "rules": [
+        {
+          "description": "Always check PayloadCMS documentation first before implementing custom solutions."
+        },
+        {
+          "description": "Use built-in features over custom implementations (e.g., Drizzle's db push in development)."
+        },
+        {
+          "description": "Schema changes in development are handled automatically by Drizzle ORM."
+        },
+        {
+          "description": "Manual migrations should only be used for production deployments."
+        },
+        {
+          "description": "Follow the migration workflow: 1) Develop with push mode, 2) Create migrations, 3) Run in production."
+        },
+        {
+          "description": "Never mix push mode and migrations in the same environment."
+        },
+        {
+          "description": "Use 'pnpm payload run' for migration scripts instead of tsx or dotenv - it handles environment setup automatically."
+        },
+        {
+          "description": "Before making schema changes:",
+          "steps": [
+            "Review existing collections in /src/collections/ for patterns and conventions",
+            "Follow established field types and structures",
+            "Make incremental changes to avoid breaking existing functionality",
+            "Test changes in development before creating migrations"
+          ]
+        },
+        {
+          "description": "Collection Development Best Practices:",
+          "practices": [
+            "Use consistent field types across collections",
+            "Follow existing naming conventions",
+            "Implement access control consistently",
+            "Group related fields logically",
+            "Add descriptive admin labels and descriptions"
+          ]
+        }
+      ]
+    },
+    "code_style": {
+      "description": "Code Style and Structure guidelines",
+      "enabled": true,
+      "rules": [
+        {
+          "description": "Write concise, technical TypeScript code with accurate examples."
+        },
+        {
+          "description": "Use functional and declarative programming patterns; avoid classes."
+        },
+        {
+          "description": "Prefer iteration and modularization over code duplication."
+        },
+        {
+          "description": "Use descriptive variable names with auxiliary verbs (e.g., isLoading, hasError)."
+        },
+        {
+          "description": "Structure files: exported component, subcomponents, helpers, static content, types."
+        }
+      ]
+    },
+    "development_workflow": {
+      "description": "Development Workflow Best Practices",
+      "enabled": true,
+      "rules": [
+        {
+          "description": "Start simple and add complexity incrementally."
+        },
+        {
+          "description": "Consult documentation before implementing custom solutions."
+        },
+        {
+          "description": "Use framework conventions and built-in features when available."
+        },
+        {
+          "description": "Test schema changes in development before production."
+        }
+      ]
+    },
+    "naming_conventions": {
+      "description": "Naming Conventions",
+      "enabled": true,
+      "rules": [
+        {
+          "description": "Use lowercase with dashes for directories (e.g., components/auth-wizard)."
+        },
+        {
+          "description": "Favor named exports for components."
+        }
+      ]
+    },
+    "typescript_usage": {
+      "description": "TypeScript Usage",
+      "enabled": true,
+      "rules": [
+        {
+          "description": "Use TypeScript for all code; prefer interfaces over types."
+        },
+        {
+          "description": "Avoid enums; use maps instead."
+        },
+        {
+          "description": "Use functional components with TypeScript interfaces."
+        }
+      ]
+    },
+    "syntax_formatting": {
+      "description": "Syntax and Formatting",
+      "enabled": true,
+      "rules": [
+        {
+          "description": "Use the 'function' keyword for pure functions."
+        },
+        {
+          "description": "Avoid unnecessary curly braces in conditionals; use concise syntax for simple statements."
+        },
+        {
+          "description": "Use Svelte's declarative syntax with reactive statements and bindings."
+        },
+        {
+          "description": "Organize Svelte script declarations in this order:",
+          "order": [
+            "Imports",
+            "Type definitions",
+            "let declarations",
+            "Reactive declarations ($: statements)",
+            "Functions and methods",
+            "Event handlers"
+          ]
+        }
+      ]
+    },
+    "ui_styling": {
+      "description": "UI and Styling",
+      "enabled": true,
+      "rules": [
+        {
+          "description": "Use Shadcn UI, Radix, and Tailwind for components and styling."
+        },
+        {
+          "description": "Implement responsive design with Tailwind CSS; use a mobile-first approach."
+        }
+      ]
+    },
+    "performance": {
+      "description": "Performance Optimization",
+      "enabled": true,
+      "rules": [
+        {
+          "description": "Use Svelte's built-in reactivity system with $: statements instead of manual state management."
+        },
+        {
+          "description": "Leverage Svelte's compile-time optimizations and automatic code splitting."
+        },
+        {
+          "description": "Use dynamic loading for non-critical components with import() and await blocks."
+        },
+        {
+          "description": "Optimize images: use WebP format, include size data, implement lazy loading."
+        },
+        {
+          "description": "Use stores for global state management and prefer derived stores for computed values."
+        },
+        {
+          "description": "Minimize component re-renders by using immutable data patterns and proper store subscriptions."
+        },
+        {
+          "description": "Use Svelte's built-in transitions and animations instead of external libraries when possible."
+        },
+        {
+          "description": "Implement proper cleanup in onDestroy lifecycle hooks to prevent memory leaks."
+        },
+        {
+          "description": "Use Svelte's built-in event delegation for better performance with event handling."
+        },
+        {
+          "description": "Leverage Svelte's built-in CSS scoping and avoid unnecessary global styles."
+        }
+      ]
+    },
+    "documentation": {
+      "description": "Documentation",
+      "enabled": true,
+      "rules": [
+        {
+          "description": "Follow Sveltekit docs for Data Fetching, Rendering, and Routing."
+        },
+        {
+          "description": "Follow Payload CMS documentation at https://payloadcms.com/docs/"
+        },
+        {
+          "description": "Always check documentation first for framework-specific features and conventions."
+        }
+      ]
+    },
+    "testing": {
+      "description": "Testing Guidelines",
+      "enabled": true,
+      "rules": [
+        {
+          "description": "Use Playwright for end-to-end testing with a focus on user interactions and flows."
+        },
+        {
+          "description": "Write tests that simulate real user behavior and cover critical paths."
+        },
+        {
+          "description": "Use page object pattern for better test organization and maintainability."
+        },
+        {
+          "description": "Include accessibility testing in the test suite."
+        },
+        {
+          "description": "Test both happy paths and error scenarios."
+        },
+        {
+          "description": "Use test fixtures for common setup and teardown operations."
+        },
+        {
+          "description": "Implement visual regression testing for UI components."
+        },
+        {
+          "description": "Use data-testid attributes for test selectors following these conventions:",
+          "conventions": [
+            "Always use data-testid instead of data-test or other test attributes",
+            "Use kebab-case for test IDs (e.g., data-testid='login-form')",
+            "Make test IDs descriptive and unique",
+            "Prefix test IDs with component name when needed (e.g., data-testid='login-form-submit')",
+            "Keep test IDs stable and avoid changing them frequently",
+            "Use consistent naming patterns across components"
+          ]
+        }
+      ]
+    }
+  }
+}
