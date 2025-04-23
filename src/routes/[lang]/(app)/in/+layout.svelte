@@ -10,38 +10,40 @@
   let { data, children } = $props<{ data: LayoutData }>();
 
   // Update company store when data changes
-  $effect(() => {
-    if (data?.companies) {
-      companyStore.setCompanyList(data.companies);
-      
-      // Set selected company if provided
-      if (data.selectedCompanyId) {
-        const selectedCompany = data.companies.find(c => c.id === data.selectedCompanyId);
-        if (selectedCompany) {
-          companyStore.setSelectedCompany(selectedCompany);
-        }
-      }
-    }
-  })
+  // $effect(() => {
+  //   if (data?.companies) {
+  //     companyStore.setCompanyList(data.companies);
+
+  //     // Set selected company if provided
+  //     if (data.selectedCompanyId) {
+  //       const selectedCompany = data.companies.find((c) => c.id === data.selectedCompanyId);
+  //       if (selectedCompany) {
+  //         companyStore.setSelectedCompany(selectedCompany);
+  //       }
+  //     }
+  //   }
+  // });
 
   onMount(() => {
+    console.log('IN LAYOUT data :: ', data);
     // Check if user is authenticated
-    const unsubscribe = authStore.subscribe(({ isAuthenticated }) => {
-      if (!isAuthenticated) {
-        const lang = $page.params.lang;
-        goto(`/${lang}/login`);
-      }
-    });
+    // const unsubscribe = authStore.subscribe(({ isAuthenticated }) => {
+    //   console.log('isAuthenticated :: ', isAuthenticated);
+    //   if (!isAuthenticated) {
+    //     const lang = $page.params.lang;
+    //     // goto(`/${lang}/login`);
+    //   }
+    // });
 
-    return () => {
-      unsubscribe();
-    };
+    // return () => {
+    //   unsubscribe();
+    // };
   });
 </script>
 
-<div class="h-dvh flex flex-col">
+<div class="min-h-dvh flex flex-col">
   <Header />
-  <div class="flex flex-col flex-1 p-3">
+  <div class="flex flex-col flex-1 py-6 px-3">
     <div class="grow flex items-center justify-center">
       {@render children()}
     </div>

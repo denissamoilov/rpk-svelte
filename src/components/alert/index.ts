@@ -11,7 +11,7 @@ export const alertVariants = tv({
     variant: {
       default: "bg-background text-foreground",
       error:
-        "border-error-500/30 text-foreground bg-error-500/10 [&>svg]:text-foreground",
+        "border-error-500/50 text-foreground bg-error-500/10 [&>svg]:text-foreground",
       success:
         "border-success-500/30 text-foreground bg-success-500/10 [&>svg]:text-foreground",
     },

@@ -13,9 +13,9 @@ export const load = async ({ data }) => {
   await setLocale(locale);
 
   // Only fetch user data in the browser and if we have an access token
-  if (browser) {
-    await authStore.fetchUser();
-  }
+  // if (browser) {
+  //   await authStore.fetchUser();
+  // }
 
   return i18n;
 };

@@ -20,11 +20,14 @@ type Size = VariantProps<typeof inputVariants>["size"];
 
 type Props = Omit<HTMLInputAttributes, "size"> & {
   size?: Size;
+  isError?: boolean;
+  isDisabled?: boolean;
 };
 
 export type FormInputEvent<T extends Event = Event> = T & {
   currentTarget: EventTarget & HTMLInputElement;
 };
+
 export type InputEvents = {
   blur: FormInputEvent<FocusEvent>;
   change: FormInputEvent<Event>;

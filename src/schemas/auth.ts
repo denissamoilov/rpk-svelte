@@ -11,7 +11,7 @@ export const signupSchema = z.object({
     .nonempty("Password is required"),
 });
 
-export const loginSchema = z.object({
+export const loginSchemaZ = z.object({
   email: z
     .string()
     .email("Invalid email address")
@@ -20,3 +20,5 @@ export const loginSchema = z.object({
     .string()
     .nonempty("Password is required"),
 });
+
+export type LoginSchema = z.infer<typeof loginSchemaZ>;

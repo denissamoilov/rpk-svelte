@@ -21,6 +21,7 @@ const config = {
       $features: "./src/features",
       $entities: "./src/entities",
       $translations: "./src/lib/translations",
+      $schemas: "./src/schemas",
     },
   },
 };

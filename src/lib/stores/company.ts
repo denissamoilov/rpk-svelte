@@ -34,24 +34,14 @@ function createCompanyStore() {
     error: null,
   });
 
-  const storedTokens =
-    typeof window !== "undefined" ? localStorage.getItem("tokens") : null;
-
   return {
     subscribe,
     getCompanyList: async () => {
       update((state) => ({ ...state, isLoading: true, error: null }));
 
-      console.log("getCompanyList storedTokens :: ", storedTokens)
-
       try {
         const response = await api(config.endpoints.local.getCompanyList, {
-          method: "GET",
-          server: {
-            locals: {
-              token: storedTokens!
-            }
-          }
+          method: "GET"
         });
 
         if (!response.ok) {
@@ -92,7 +82,6 @@ function createCompanyStore() {
         const response = await api(config.endpoints.company.createCompany, {
           method: "POST",
           body: JSON.stringify(data),
-          requireAuth: true
         });
 
         if(!response.ok) {
