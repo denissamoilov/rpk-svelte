@@ -23,14 +23,14 @@
 	{...restProps}
 >
   {#if leftIcon}
-    <LeftIcon class="shrink-0" size={iconSize} />
+    <LeftIcon class="shrink-0 z-1 relative" size={iconSize} />
   {/if}
   {#if children}
-    <span class={cn("text-left", isCentered && "text-center", isFullWidth && "w-full")}>
+    <span class={cn("text-left z-1 relative", isCentered && "text-center", isFullWidth && "w-full")}>
       {@render children?.()}
     </span>
   {/if}
   {#if rightIcon}
-    <RightIcon class="shrink-0" size={iconSize} />
+    <RightIcon class="shrink-0 z-1 relative" size={iconSize} />
   {/if}
 </ButtonPrimitive.Root>

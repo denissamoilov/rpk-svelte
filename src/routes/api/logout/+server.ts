@@ -11,7 +11,6 @@ export const POST: RequestHandler = async ({ request, cookies }) => {
     const response = await api(config.endpoints.auth.logout, {
       method: 'POST',
       body: JSON.stringify(body),
-      requireAuth: false
     });
 
     if (!response.ok) {

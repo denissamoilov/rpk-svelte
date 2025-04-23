@@ -24,12 +24,7 @@ export const load: PageServerLoad = async ({ url, fetch, cookies }) => {
 
   try {
     const response = await api(config.endpoints.auth.verifyEmail, {
-      requireAuth: false,
       method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Accept: "application/json",
-      },
       body: JSON.stringify({ token }),
     });
 

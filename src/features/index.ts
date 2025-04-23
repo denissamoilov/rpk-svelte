@@ -1,6 +1,6 @@
 export { default as LoginForm } from "./auth/ui/LoginForm.svelte";
 export { default as SignupForm } from "./auth/ui/SignupForm.svelte";
-export { signupSchema } from "./auth/schema/schema";
+export { signupSchema } from "../schemas/auth";
 export { default as BackofficeSidebar } from "./backoffice/ui/BackofficeSidebar.svelte";
 export { default as Header } from "./backoffice/ui/Header.svelte";
 export { default as Footer } from "./backoffice/ui/Footer.svelte";

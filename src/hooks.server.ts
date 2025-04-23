@@ -5,6 +5,8 @@ import type { Handle } from "@sveltejs/kit";
 export const handle: Handle = async ({ event, resolve }) => {
   let accessToken = event.cookies.get("accessToken");
 
+  console.log("event.cookies :: ", event.cookies.getAll())
+
   if(!accessToken) {
     const refreshToken = event.cookies.get('refreshToken');
     console.log("refresh token :: ", refreshToken)

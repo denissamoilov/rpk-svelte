@@ -3,10 +3,10 @@ import type { Button as ButtonPrimitive } from "bits-ui";
 import Root from "./button.svelte";
 
 const buttonVariants = tv({
-  base: "inline-flex items-center justify-center whitespace-nowrap font-semibold transition-colors disabled:pointer-events-none disabled:opacity-50 ring-offset-background",
+  base: "inline-flex items-center justify-center relative whitespace-nowrap font-semibold transition-colors disabled:pointer-events-none disabled:opacity-50 ring-offset-background before:absolute before:inset-px before:rounded-lg",
   variants: {
     variant: {
-      primary: "bg-primary-500 text-primary-foreground hover:bg-primary-600",
+      primary: "bg-gradient-to-b active:bg-gradient-to-t from-primary-400 to-primary-600 text-primary-foreground hover:bg-primary-600 before:bg-primary-500",
       secondary: "bg-secondary-500 text-white hover:bg-secondary-600",
       accent: "bg-accent-500 text-white hover:bg-accent-600",
       outline: "border border-secondary-500 hover:border-secondary-400",

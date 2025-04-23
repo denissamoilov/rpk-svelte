@@ -12,6 +12,8 @@
 ## TODOs
 - [ ] Check JWT token regeneration
 - [ ] Check JWT token storage
+- [ ] Add superforms to LoginForm
+- [ ] Cover Login form with tests
 - [ ] Quick tasks to remember
 
 ## References

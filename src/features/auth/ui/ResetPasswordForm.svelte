@@ -1,10 +1,10 @@
 <script lang="ts">
-  import { Input, Button } from "$components";
-  import { Alert, AlertDescription, AlertTitle } from "$components/alert";
-  import PasswordStrengthIndicator from "./PasswordStrengthIndicator.svelte"; 
-  import { api } from "$lib/api";
-  import { config } from "$lib/config";
-  import { page } from "$app/stores";
+  import { Input, Button } from '$components';
+  import { Alert, AlertDescription, AlertTitle } from '$components/alert';
+  import PasswordStrengthIndicator from './PasswordStrengthIndicator.svelte';
+  import { api } from '$lib/api';
+  import { config } from '$lib/config';
+  import { page } from '$app/stores';
 
   let isLoading = false;
   let password = '';
@@ -19,7 +19,6 @@
 
     try {
       const response = await api(config.endpoints.auth.resetPassword, {
-        requireAuth: false,
         method: 'POST',
         body: JSON.stringify({ token, password }),
       });
@@ -30,12 +29,11 @@
       isSuccess = data.success;
       message = data.message;
     } catch (error) {
-      console.error("Reset password error:", error);
+      console.error('Reset password error:', error);
     } finally {
       isLoading = false;
     }
-  }
-
+  };
 </script>
 
 <div class="flex flex-col gap-4 w-full">
@@ -45,9 +43,15 @@
   {:else}
     <form class="flex flex-col gap-4" on:submit={handleSubmit}>
       <div class="flex flex-col gap-1">
-        <Input type="password" placeholder="Password" size="lg" label="Password" bind:value={password} />
+        <Input
+          type="password"
+          placeholder="Password"
+          size="lg"
+          label="Password"
+          bind:value={password}
+        />
         {#if password.length > 0}
-          <PasswordStrengthIndicator password={password} />
+          <PasswordStrengthIndicator {password} />
         {/if}
       </div>
 
@@ -59,11 +63,7 @@
           </AlertDescription>
         </Alert>
       {/if}
-      <Button
-        type="submit"
-        size="lg"
-        disabled={isLoading}
-      >
+      <Button type="submit" size="lg" disabled={isLoading}>
         {isLoading ? 'Sending...' : 'Send'}
       </Button>
     </form>

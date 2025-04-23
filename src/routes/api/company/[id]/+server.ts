@@ -6,7 +6,7 @@ import { config } from '$lib/config';
 export const GET: RequestHandler = async ({ params, cookies }) => {
   const accessToken = cookies.get('accessToken');
 
-  console.log("accessToken :: ", accessToken)
+  // console.log("accessToken :: ", accessToken)
 
   if (!accessToken) {
     return json({ success: false, message: 'Not authenticated' }, { status: 401 });
@@ -16,11 +16,6 @@ export const GET: RequestHandler = async ({ params, cookies }) => {
     const response = await api(config.endpoints.company.getCompany.replace(':id', params.id), {
       method: 'GET',
       credentials: 'include',
-      server: {
-        locals: {
-          token: accessToken
-        }
-      }
     })
 
     if (!response.ok) {

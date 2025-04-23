@@ -10,6 +10,9 @@
 	
   export let size: $$Props["size"] = "md";
 	export let value: $$Props["value"] = undefined;
+  export let isError: $$Props["isError"] = false;
+  export let isDisabled: $$Props["isDisabled"] = false;
+
 	export { className as class };
 
 	let className: $$Props["class"] = undefined;
@@ -37,6 +40,8 @@
         icon && "pl-11",
         append && "pr-11",
         "focus-outline",
+        isError && "border-error-500",
+        isDisabled && "border-neutral-300",
         className
       )}
       bind:value
