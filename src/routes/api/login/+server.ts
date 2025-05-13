@@ -24,6 +24,8 @@ export const POST: RequestHandler = async ({ request, cookies }) => {
     //   credentials: 'include'
     // })
 
+    console.log("POST response :: ", response);
+
     const data = await response.json();
 
     console.log("POST response data :: ", data);

@@ -19,7 +19,7 @@
 </script>
 
 <ButtonPrimitive.Root
-	class={cn(buttonVariants({ variant, size }), "focus-outline !no-underline", className)}
+	class={cn(buttonVariants({ variant, size }), className)}
 	{...restProps}
 >
   {#if leftIcon}

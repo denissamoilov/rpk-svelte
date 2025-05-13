@@ -45,7 +45,7 @@ function createCompanyStore() {
       console.log("getCompanyList storedTokens :: ", storedTokens)
 
       try {
-        const response = await api(config.endpoints.local.getCompanyList, {
+        const response = await api(config.endpoints.company.getUserCompanyList, {
           method: "GET",
           server: {
             locals: {

@@ -11,10 +11,7 @@
   const success = data?.success;
   const user = data?.user;
 
-  const handleLoginRedirect = () => {
-    const lang = $page.params.lang;
-    goto(`/${lang}/login`);
-  };
+  const lang = $page.params.lang;
 </script>
 
 <div class="min-h-screen flex items-center justify-center p-4">
@@ -40,8 +37,8 @@
 
     <div class="mt-4 text-center">
       <Button 
-        variant="outline" 
-        on:click={handleLoginRedirect}
+        variant="link" 
+        href={`/${lang}/login`}
       >
         Go to Login
       </Button>

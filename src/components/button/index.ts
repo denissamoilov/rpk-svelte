@@ -1,9 +1,8 @@
 import { type VariantProps, tv } from "tailwind-variants";
 import type { Button as ButtonPrimitive } from "bits-ui";
-import Root from "./button.svelte";
 
 const buttonVariants = tv({
-  base: "inline-flex items-center justify-center whitespace-nowrap font-semibold transition-colors disabled:pointer-events-none disabled:opacity-50 ring-offset-background",
+  base: "inline-flex items-center justify-center whitespace-nowrap font-semibold transition-colors disabled:pointer-events-none disabled:opacity-50 ring-offset-background focus-outline no-underline",
   variants: {
     variant: {
       primary: "bg-primary-500 text-primary-foreground hover:bg-primary-600",
@@ -12,6 +11,7 @@ const buttonVariants = tv({
       outline: "border border-secondary-500 hover:border-secondary-400",
       ghost: "hover:bg-gray-200 hover:text-gray-900",
       gray: "bg-neutral-900 border border-neutral-800 hover:bg-neutral-800/25",
+      link: "font-normal text-link underline hover:no-underline",
     },
     size: {
       "icon-xs": "input-xs px-1 min-w-8",
@@ -41,11 +41,9 @@ type Props = ButtonPrimitive.Props & {
 type Events = ButtonPrimitive.Events;
 
 export {
-  Root,
   type Props,
   type Events,
   //
-  Root as Button,
   type Props as ButtonProps,
   type Events as ButtonEvents,
   buttonVariants,

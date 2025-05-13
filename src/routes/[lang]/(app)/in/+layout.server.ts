@@ -4,7 +4,7 @@ export async function load({params, fetch}) {
   const companyId = params.id;
 
   try {
-    const response = await fetch(config.endpoints.local.getCompanyList);
+    const response = await fetch(config.endpoints.company.getUserCompanyList);
 
     if (!response.ok) {
       console.error("Failed to fetch companies:", await response.text());
