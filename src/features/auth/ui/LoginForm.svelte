@@ -32,7 +32,7 @@
     <Input
       type="email"
       placeholder="Email"
-      size="lg"
+      size="md"
       bind:value={email}
       required
     />
@@ -40,7 +40,7 @@
     <Input
       type="password"
       placeholder="Password"
-      size="lg"
+      size="md"
       bind:value={password}
       required
     />
@@ -73,7 +73,7 @@
       </div>
       <Button
         type="submit"
-        size="lg"
+        size="md"
         disabled={isLoading}
         isLoading={isLoading}
         isCentered={true}
@@ -85,7 +85,7 @@
     <div class="flex flex-col gap-3">
       <Button
         variant="gray"
-        size="lg"
+        size="md"
         on:click={() => {
           signIn("google");
           /* Add Google login handler */

@@ -45,7 +45,7 @@
   {:else}
     <form class="flex flex-col gap-4" on:submit={handleSubmit}>
       <div class="flex flex-col gap-1">
-        <Input type="password" placeholder="Password" size="lg" label="Password" bind:value={password} />
+        <Input type="password" placeholder="Password" size="md" label="Password" bind:value={password} />
         {#if password.length > 0}
           <PasswordStrengthIndicator password={password} />
         {/if}
@@ -61,7 +61,7 @@
       {/if}
       <Button
         type="submit"
-        size="lg"
+        size="md"
         disabled={isLoading}
       >
         {isLoading ? 'Sending...' : 'Send'}

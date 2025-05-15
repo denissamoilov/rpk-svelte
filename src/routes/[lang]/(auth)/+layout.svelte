@@ -16,11 +16,11 @@
     <div class="w-full h-full flex flex-col justify-center">
       {@render children()}
     </div>
-    <LanguageSelector />
+    <LanguageSelector size="sm" />
   </main>
   <div
     class={cn(
-      "flex flex-col gap-6 items-center justify-center w-full min-h-full",
+      "hidden lg:flex flex-col gap-6 items-center justify-center w-full min-h-full",
       // "bg-background rounded-xl flex flex-col items-center justify-center w-full min-h-full",
       // "bg-[hsla(203,88%,47%,1)]",
       // "bg-[radial-gradient(circle_at_102%_80%,hsla(269,66%,59%,1)_0%,transparent_40.31%),radial-gradient(circle_at_16%_46%,hsla(0,0%,98%,0.64)_0%,transparent_50%)]",

@@ -46,7 +46,7 @@
     <p>{message}</p>
   {:else}
     <form class="flex flex-col gap-4" on:submit={handleSubmit}>
-      <Input type="email" placeholder="Email" size="lg" label="Email" bind:value={email} />
+      <Input type="email" placeholder="Email" size="md" label="Email" bind:value={email} />
 
     {#if message}
       <Alert variant="error">
@@ -58,7 +58,7 @@
     {/if}
     <Button
       type="submit"
-      size="lg"
+      size="md"
       disabled={isLoading}
     >
         {isLoading ? 'Sending...' : 'Send'}

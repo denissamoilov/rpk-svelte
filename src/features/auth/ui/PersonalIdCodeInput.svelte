@@ -38,7 +38,7 @@
   <Input
     type="text"
     placeholder="Personal ID Code"
-    size="lg"
+    size="md"
     maxlength={maxLength}
     minlength={maxLength}
     {required}
