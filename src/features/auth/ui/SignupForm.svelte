@@ -1,5 +1,6 @@
 <script lang="ts">
   import { Input, Button, Separator } from "$components";
+  import GoogleIcon from '$components/icons/GoogleIcon.svelte';
   import PasswordStrengthIndicator from "./PasswordStrengthIndicator.svelte";
   import PersonalIdCodeInput from "./PersonalIdCodeInput.svelte";
   import Alert from "$components/alert/alert.svelte";
@@ -7,7 +8,7 @@
   import { api } from "$lib/api";
   import { config } from "$lib/config";
   import { page } from "$app/stores";
-    import { CircleX } from "lucide-svelte";
+  import { CircleX } from "lucide-svelte";
   let name = '';
   let surname = '';
   let personalIdCode = '';
@@ -117,7 +118,7 @@
         size="md"
         disabled={isLoading}
       >
-        {isLoading ? 'Registering...' : 'Register'}
+        {isLoading ? 'Signing up...' : 'Sign Up'}
       </Button>
     </form>
   <!-- </Form> -->
@@ -128,8 +129,9 @@
     <Button
       variant="gray"
       size="md"
+      leftIcon={GoogleIcon}
     >
-      Continue with Google
+      Sign up with Google
     </Button>
   </div>
 

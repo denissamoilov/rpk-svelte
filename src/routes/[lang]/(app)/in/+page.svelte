@@ -7,7 +7,7 @@
   import { CompanyCreateForm } from '$features';
   import { companyStore } from '$lib/stores/company';
   import type { SelectOptionType } from '$lib/types/docs';
-  import { ArrowRightIcon, PlusIcon } from 'lucide-svelte';
+  import { PlusIcon } from 'lucide-svelte';
 
   let { data } = $props();
   const companyList = $derived($companyStore.companies);

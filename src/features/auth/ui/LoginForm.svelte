@@ -1,6 +1,7 @@
 <script lang="ts">
   import { Input, Button, Separator } from "$components";
   import { Alert, AlertDescription, AlertTitle } from "$components/alert";
+  import GoogleIcon from '$components/icons/GoogleIcon.svelte';
   import { page } from "$app/stores";
   import { goto } from '$app/navigation';
   import { authStore } from "$lib/stores/auth";
@@ -79,7 +80,7 @@
         isLoading={isLoading}
         isCentered={true}
       >
-        {isLoading ? 'Logging in...' : 'Login'}
+        {isLoading ? 'Signing in...' : 'Sign In'}
       </Button>
     </form>
     <Separator label="Or" class="my-4" />
@@ -87,13 +88,9 @@
       <Button
         variant="gray"
         size="md"
-        on:click={() => {
-          signIn("google");
-          /* Add Google login handler */
-        }}
+        leftIcon={GoogleIcon}
       >
-        <!-- <GoogleIcon class="size-6" /> -->
-        Continue with Google
+        Sign in with Google
       </Button>
     </div>
     <p class="text-center text-md">
