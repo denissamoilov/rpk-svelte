@@ -18,7 +18,8 @@
 
   --color-link: var(--link);
 
-  --color-muted: var(--border);
+  --color-muted: var(--muted);
+  --color-subtle: var(--subtle);
 
   --color-border: var(--border);
   --color-input: var(--input);
@@ -118,6 +119,10 @@
   --secondary-hover: oklch(calc(var(--secondary-bg-l) + 0.05) var(--secondary-bg-c) var(--secondary-bg-h));
   --secondary-foreground: oklch(var(--secondary-fg-l) var(--secondary-fg-c) var(--secondary-fg-h));
 
+  /* Muted */
+  --muted: oklch(0.5 var(--fg-c) var(--fg-h));
+  --subtle: oklch(0.75 var(--fg-c) var(--fg-h));
+
   /* Link */
   /* #005aa8 */
   --link: oklch(0.58 0.1453 253.23);
@@ -149,6 +154,10 @@
   /* Background */
   --surface: oklch(calc(var(--bg-l) + 0.05) calc(var(--bg-c) - 0.01) var(--bg-h));
 
+  /* Muted */
+  --muted: oklch(0.75 var(--fg-c) var(--fg-h));
+  --subtle: oklch(0.5 var(--fg-c) var(--fg-h));
+
   /* Border */
   --border: oklch(calc(var(--bg-l) + 0.25) var(--bg-c) var(--bg-h));
 
@@ -162,7 +171,7 @@
 
 @layer utilities {
   .input {
-    @apply w-full bg-input border border-border transition-colors placeholder:text-muted disabled:cursor-not-allowed disabled:border-border/75 disabled:bg-border/15;
+    @apply w-full bg-input border border-border transition-colors placeholder:text-subtle disabled:cursor-not-allowed disabled:border-border/75 disabled:bg-border/15;
   }
   .input-xs {
     @apply h-8 text-sm px-2 rounded gap-1;
@@ -180,7 +189,7 @@
 
 @layer base {
   * {
-    @apply border-border outline-ring focus-visible:outline-offset-4 focus-visible:outline-primary;
+    @apply bg-inherit border-border outline-ring focus-visible:outline-offset-4 focus-visible:outline-primary;
   }
   body {
     @apply bg-background text-foreground;

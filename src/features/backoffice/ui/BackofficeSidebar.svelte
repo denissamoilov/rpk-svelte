@@ -6,12 +6,64 @@
   import { page } from '$app/stores';
   import { PlusIcon } from 'lucide-svelte';
   import { companyStore } from '$lib/stores/company';
+    import { cn } from '$lib/utils';
   const {lang, id} = $page.params;
   const companyList = $derived($companyStore.companies);
+
+  const menuItems = [
+    {
+      label: 'Sale',
+      href: `/${lang}/in/${id}/sale`,
+      icon: ShoppingCartIcon
+    },
+    {
+      label: 'Purchase',
+      href: `/${lang}/in/${id}/purchase`,
+      icon: WalletCardsIcon
+    },
+    {
+      label: 'Reports',
+      href: `/${lang}/in/${id}/reports`,
+      icon: BookHeartIcon
+    },
+    {
+      label: 'Close Month',
+      href: `/${lang}/in/${id}/close-month`,
+      icon: CalendarCheckIcon
+    },
+    {
+      label: ''
+    },
+    {
+      label: 'Settlements',
+      href: `/${lang}/in/${id}/additions`,
+      icon: HandshakeIcon
+    },
+    {
+      label: 'Fixed Assets',
+      href: `/${lang}/in/${id}/additions`,
+      icon: Building2Icon
+    },
+    {
+      label: 'Other Documents',
+      href: `/${lang}/in/${id}/additions`,
+      icon: FileIcon
+    },
+    {
+      label: 'Entries',
+      href: `/${lang}/in/${id}/additions`,
+      icon: FileTextIcon
+    },
+    {
+      label: 'Fixed Data',
+      href: `/${lang}/in/${id}/additions`,
+      icon: DatabaseIcon
+    }
+  ]
   // console.log("companyList :: ", $companyStore)
 </script>
 
-<aside class={"sticky top-14 h-full flex flex-col p-3 bg-surface rounded-xl max-w-xs gap-6 items-start justify-between transition-all duration-300 w-64"}>
+<aside class={"sticky top-14 h-full flex flex-col p-3 bg-neutral-900 rounded-xl max-w-xs gap-6 items-start justify-between transition-all duration-300 w-64"}>
   {#if companyList.length}
     <SelectCompanyDropdown />
   {:else}
@@ -19,29 +71,21 @@
   {/if}
   <nav class="w-full flex-1">
     <ul class="flex flex-col gap-2">
-      <li><a href={`/${lang}/in/${id}/sale`} class="menuLink active"><ShoppingCartIcon size={16} />Sale</a></li>
-      <li><a href={`/${lang}/in/${id}/purchase`} class="menuLink"><WalletCardsIcon size={16} />Purchase</a></li>
-      <li><a href={`/${lang}/in/${id}/reports`} class="menuLink"><BookHeartIcon size={16} />Reports</a></li>
-      <li><a href={`/${lang}/in/${id}/close-month`} class="menuLink"><CalendarCheckIcon size={16} />Close Month</a></li>
-      <li><Separator class="my-1" /></li>
-      <li><a href={`/${lang}/in/${id}/additions`} class="menuLink"><HandshakeIcon size={16} />Settlements</a></li>
-      <li><a href={`/${lang}/in/${id}/additions`} class="menuLink"><Building2Icon size={16} />Fixed Assets</a></li>
-      <li><a href={`/${lang}/in/${id}/additions`} class="menuLink"><FileIcon size={16} />Other Documents</a></li>
-      <li><a href={`/${lang}/in/${id}/additions`} class="menuLink"><FileTextIcon size={16} />Entries</a></li>
-      <li><a href={`/${lang}/in/${id}/additions`} class="menuLink"><DatabaseIcon size={16} />Fixed Data</a></li>
+      {#each menuItems as item}
+        <li>
+          {#if item.label}
+            <a href={item.href} class={cn("flex gap-2 items-center text-neutral-500 relative hover:bg-neutral-800/50 px-4 py-2 no-underline text-md rounded-md transition-colors duration-300", item.href === $page.url.pathname && "bg-neutral-800 text-neutral-100")}>
+              <item.icon size={16} />
+              {item.label}
+            </a>
+          {:else}
+            <Separator class="my-1" />
+          {/if}
+        </li>
+      {/each}
     </ul>
   </nav>
   <div class="flex items-center w-full">
     <LanguageSelector />
   </div>
 </aside>
-
-<style lang="postcss">
-  .menuLink {
-    @apply flex gap-2 items-center text-foreground/70 relative hover:bg-surface px-4 py-2 no-underline text-md rounded-md transition-colors duration-300;
-    &.active {
-      @apply bg-surface;
-      @apply text-foreground;
-    }
-  }
-</style>
