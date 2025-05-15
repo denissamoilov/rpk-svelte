@@ -5,15 +5,19 @@ import Description from "./alert-description.svelte";
 import Title from "./alert-title.svelte";
 
 export const alertVariants = tv({
-  base: "[&>svg]:text-foreground relative w-full rounded-sm border p-4 [&:has(svg)]:pl-11 [&>svg+div]:translate-y-[-3px] [&>svg]:absolute [&>svg]:left-4 [&>svg]:top-4",
+  base: "text-foreground relative w-full rounded-sm border px-4 py-2 [&:has(svg)]:pl-11 [&>svg]:absolute [&>svg]:left-4 [&>svg]:top-3",
 
   variants: {
     variant: {
-      default: "bg-background text-foreground",
+      default: "bg-background text-foreground [&>svg]:text-foreground",
       error:
-        "border-destructive/30 text-foreground bg-destructive/10 [&>svg]:text-foreground",
+        "border-destructive bg-destructive/10 [&>svg]:text-destructive",
+      warning:
+        "border-warning bg-warning/10 [&>svg]:text-warning",
       success:
-        "border-success/30 text-foreground bg-success/10 [&>svg]:text-foreground",
+        "border-success bg-success/10 [&>svg]:text-success",
+      info:
+        "border-info bg-info/10 [&>svg]:text-info",
     },
   },
   defaultVariants: {

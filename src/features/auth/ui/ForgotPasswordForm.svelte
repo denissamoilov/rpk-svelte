@@ -3,6 +3,7 @@
   import { Alert, AlertDescription, AlertTitle } from "$components/alert";
   import { api } from "$lib/api";
   import { config } from "$lib/config";
+    import { CircleX } from "lucide-svelte";
 
   let isLoading = false;
   let email = '';
@@ -50,6 +51,7 @@
 
     {#if message}
       <Alert variant="error">
+        <CircleX class="size-4" />
         <AlertTitle>Error</AlertTitle>
         <AlertDescription>
         {message}

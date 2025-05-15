@@ -4,7 +4,7 @@
   import { page } from "$app/stores";
   import { goto } from '$app/navigation';
   import { authStore } from "$lib/stores/auth";
-
+  import { CircleX } from "lucide-svelte";
   let email = '';
   let password = '';
   let errorMessage: Error = { message: '', name: '' };
@@ -47,6 +47,7 @@
 
     {#if errorMessage.name}
       <Alert variant="error">
+        <CircleX class="size-4" />
         <AlertTitle>{errorMessage.name}</AlertTitle>
         <AlertDescription>
           {errorMessage.message}

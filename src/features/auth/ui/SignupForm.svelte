@@ -7,6 +7,7 @@
   import { api } from "$lib/api";
   import { config } from "$lib/config";
   import { page } from "$app/stores";
+    import { CircleX } from "lucide-svelte";
   let name = '';
   let surname = '';
   let personalIdCode = '';
@@ -103,6 +104,7 @@
       </div>
       {#if errorMessage.name}
         <Alert variant="error">
+          <CircleX class="size-4" />
           <AlertTitle>{errorMessage.name}</AlertTitle>
           <AlertDescription>
             {errorMessage.message}

@@ -2,6 +2,7 @@
   import { Input, Button } from "$components";
   import { Alert, AlertDescription, AlertTitle } from "$components/alert";
   import { companyStore } from "$lib/stores/company";
+    import { CircleCheckBig, CircleX } from "lucide-svelte";
 
   export let companyId: number;
   
@@ -46,6 +47,7 @@
 <form class="flex flex-col gap-4" on:submit={handleSubmit}>
   {#if error}
     <Alert variant="error">
+      <CircleX class="size-4" />
       <AlertTitle>Error</AlertTitle>
       <AlertDescription>{error}</AlertDescription>
     </Alert>
@@ -53,6 +55,7 @@
 
   {#if success}
     <Alert variant="success">
+      <CircleCheckBig class="size-4" />
       <AlertTitle>Success</AlertTitle>
       <AlertDescription>Company details updated successfully</AlertDescription>
     </Alert>

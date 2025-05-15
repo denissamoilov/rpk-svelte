@@ -4,6 +4,7 @@
   import { t } from '$translations';
   import { page } from '$app/stores';
   import type { PageData } from './$types';
+    import { CircleX, CircleCheckBig } from 'lucide-svelte';
 
   export let data: PageData;
   
@@ -18,6 +19,7 @@
 <div class="flex flex-col gap-4 place-items-center">
   {#if error}
     <Alert variant="error">
+      <CircleX class="size-4" />
       <AlertTitle>Verification Failed</AlertTitle>
       <AlertDescription>
         {data.message || 'An error occurred during email verification.'}
@@ -25,6 +27,7 @@
     </Alert>
   {:else if success}
     <Alert variant="success">
+      <CircleCheckBig class="size-4" />
       <AlertTitle>Email Verified</AlertTitle>
       <AlertDescription>
         <p>{data.message}</p>

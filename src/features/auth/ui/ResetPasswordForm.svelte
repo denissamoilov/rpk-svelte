@@ -5,6 +5,7 @@
   import { api } from "$lib/api";
   import { config } from "$lib/config";
   import { page } from "$app/stores";
+    import { CircleX } from "lucide-svelte";
 
   let isLoading = false;
   let password = '';
@@ -53,6 +54,7 @@
 
       {#if message}
         <Alert variant="error">
+          <CircleX class="size-4" />
           <AlertTitle>Error</AlertTitle>
           <AlertDescription>
             {message}
