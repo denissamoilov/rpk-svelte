@@ -63,7 +63,7 @@
   // console.log("companyList :: ", $companyStore)
 </script>
 
-<aside class={"sticky top-14 h-full flex flex-col p-3 bg-neutral-900 rounded-xl max-w-xs gap-6 items-start justify-between transition-all duration-300 w-64"}>
+<aside class={"sticky top-14 h-full flex flex-col p-3 bg-surface rounded-xl max-w-xs gap-6 items-start justify-between transition-all duration-300 w-64"}>
   {#if companyList.length}
     <SelectCompanyDropdown />
   {:else}
@@ -74,8 +74,8 @@
       {#each menuItems as item}
         <li>
           {#if item.label}
-            <a href={item.href} class={cn("flex gap-2 items-center text-neutral-500 relative hover:bg-neutral-800/50 px-4 py-2 no-underline text-md rounded-md transition-colors duration-300", item.href === $page.url.pathname && "bg-neutral-800 text-neutral-100")}>
-              <item.icon size={16} />
+            <a href={item.href} class={cn("flex gap-2 items-center text-muted relative hover:bg-background px-4 py-2 no-underline text-md rounded-md transition-colors duration-300", item.href === $page.url.pathname && "bg-neutral-800 text-neutral-100")}>
+              <item.icon size={16} class="bg-transparent" />
               {item.label}
             </a>
           {:else}

@@ -13,7 +13,7 @@
           {userStore.user()?.name.charAt(0)}{userStore.user()?.surname.charAt(0)}
         </AvatarFallback>
       </Avatar>
-      <p class="text-neutral-100 text-sm">
+      <p class="text-sm font-medium text-muted">
         {userStore.user()?.name} {userStore.user()?.surname}
       </p>
       <ChevronDown size={16} />

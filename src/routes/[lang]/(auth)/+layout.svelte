@@ -2,7 +2,7 @@
   import { LanguageSelector } from '$entities/LanguageSelector';
   import { cn } from '$lib/utils';
   import logo from '$lib/assets/logo.svg';
-  import signup from '$lib/assets/signup.svg';
+  import signup from '$lib/assets/signup.svg?raw';
 
   let { children } = $props();
 </script>
@@ -36,7 +36,6 @@
     </div>
   {/each}
 </div> -->
-
-    <img src={signup} alt="Raamatupidamiskeskus" />
+  {@html signup}
   </div>
 </div>
