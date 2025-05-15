@@ -8,7 +8,7 @@ const buttonVariants = tv({
       primary: "bg-primary text-primary-foreground hover:bg-primary-hover",
       secondary: "bg-secondary text-white",
       accent: "bg-accent text-white",
-      outline: "border border-secondary",
+      outline: "border border-primary hover:bg-primary/10",
       ghost: "hover:bg-background hover:text-foreground",
       gray: "bg-background border border-border hover:bg-background/25",
       link: "font-normal underline hover:no-underline",

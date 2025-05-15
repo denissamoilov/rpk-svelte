@@ -4,7 +4,7 @@
   import { t } from '$translations';
   import { page } from '$app/stores';
   import type { PageData } from './$types';
-    import { CircleX, CircleCheckBig } from 'lucide-svelte';
+    import { CircleX, CircleCheckBig, LogInIcon } from 'lucide-svelte';
 
   export let data: PageData;
   
@@ -40,10 +40,12 @@
 
   <div class="text-center">
     <Button 
-      variant="link" 
+      variant="outline" 
       href={`/${lang}/login`}
+      size="md"
+      rightIcon={LogInIcon}
     >
-      Go to Login
+      Log In
     </Button>
   </div>
 </div>

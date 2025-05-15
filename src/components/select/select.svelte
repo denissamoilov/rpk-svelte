@@ -4,11 +4,11 @@
   import type { Icon as IconType } from "lucide-svelte";
 
   export let options: SelectOptionType[];
-  export let currentValue: SelectOptionType; 
+  export let currentValue: SelectOptionType | undefined; 
   export let onChangeHandle: (value: SelectOptionType) => void;
   export let size: "sm" |"md" | "lg" = "md";
   export let placeholder: string = "Placeholder";
-  export let leftIcon: typeof IconType;
+  export let leftIcon: typeof IconType | null = null;
 
   const Icon = leftIcon;
 </script>
@@ -18,7 +18,7 @@
   <SelectTrigger size={size}>
     <div class="flex items-center gap-2 flex-1 truncate">
       {#if leftIcon}
-      <div class="shrink-0 text-neutral-600">
+      <div class="shrink-0 text-subtle">
         <Icon size={16} />
       </div>
       {/if}

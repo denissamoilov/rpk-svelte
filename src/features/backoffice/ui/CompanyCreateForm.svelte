@@ -31,21 +31,19 @@
   }
 </script>
 
-<form class="flex flex-col gap-6" on:submit={handleSubmit}>
+<form class="bg-inherit flex flex-col gap-6" on:submit={handleSubmit}>
   <div class="flex flex-col gap-4">
     <Input
       type="text"
-      label="Company Name"
       placeholder="Enter company name"
       bind:value={name}
       required
     />
 
-    <Separator label="or" />
+    <Separator label="Or" />
 
     <Input
       type="text"
-      label="Registration Number"
       placeholder="Enter company registration number"
       bind:value={registrationNumber}
       required
@@ -54,7 +52,6 @@
 
   <Input
     type="email"
-    label="Email"
     placeholder="Enter company email"
     bind:value={email}
     required
@@ -62,13 +59,12 @@
 
   <Input
     type="text"
-    label="Address"
     placeholder="Enter company address"
     bind:value={address}
     required
   />
 
-  <Button type="submit" disabled={isLoading} size="lg">
+  <Button type="submit" disabled={isLoading} size="md">
     {isLoading ? 'Creating...' : 'Create Company'}
   </Button>
 </form>
