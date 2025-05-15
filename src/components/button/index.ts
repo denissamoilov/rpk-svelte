@@ -2,16 +2,16 @@ import { type VariantProps, tv } from "tailwind-variants";
 import type { Button as ButtonPrimitive } from "bits-ui";
 
 const buttonVariants = tv({
-  base: "inline-flex items-center justify-center whitespace-nowrap font-semibold transition-colors disabled:pointer-events-none disabled:opacity-50 ring-offset-background focus-outline no-underline",
+  base: "cursor-pointer text-md inline-flex items-center justify-center whitespace-nowrap font-semibold transition-colors disabled:pointer-events-none disabled:opacity-50 ring-offset-background focus-ring no-underline",
   variants: {
     variant: {
-      primary: "bg-primary-500 text-primary-foreground hover:bg-primary-600",
-      secondary: "bg-secondary-500 text-white hover:bg-secondary-600",
-      accent: "bg-accent-500 text-white hover:bg-accent-600",
-      outline: "border border-secondary-500 hover:border-secondary-400",
-      ghost: "hover:bg-gray-200 hover:text-gray-900",
-      gray: "bg-neutral-900 border border-neutral-800 hover:bg-neutral-800/25",
-      link: "font-normal text-link underline hover:no-underline",
+      primary: "bg-primary text-primary-foreground hover:bg-primary-hover",
+      secondary: "bg-secondary text-white",
+      accent: "bg-accent text-white",
+      outline: "border border-secondary",
+      ghost: "hover:bg-background hover:text-foreground",
+      gray: "bg-background border border-border hover:bg-background/25",
+      link: "font-normal underline hover:no-underline",
     },
     size: {
       "icon-xs": "input-xs px-1 min-w-8",

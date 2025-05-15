@@ -17,7 +17,7 @@
 	{transitionConfig}
 	{sideOffset}
 	class={cn(
-		"bg-neutral-900 text-neutral-100 z-50 min-w-[8rem] rounded-md border p-1 shadow-md focus:outline-none",
+		"bg-background text-foreground z-50 min-w-32 rounded-md border p-1 shadow-md focus:outline-none",
 		className
 	)}
 	{...$$restProps}

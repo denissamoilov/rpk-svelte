@@ -36,7 +36,7 @@
         inputVariants({size}),
         icon && "pl-11",
         append && "pr-11",
-        "focus-outline",
+        "focus-ring",
         className
       )}
       bind:value

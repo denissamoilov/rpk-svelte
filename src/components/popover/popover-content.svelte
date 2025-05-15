@@ -13,7 +13,7 @@
 	{transition}
 	{transitionConfig}
 	class={cn(
-		"bg-neutral-900 z-50 w-72 rounded-md border border-neutral-800 p-4 shadow-md outline-none",
+		"bg-background z-50 w-72 rounded-md border border-border p-4 shadow-md outline-none",
 		className
 	)}
 	{...$$restProps}

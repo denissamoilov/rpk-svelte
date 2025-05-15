@@ -3,7 +3,7 @@ import Root from "./input.svelte";
 import type { HTMLInputAttributes } from "svelte/elements";
 
 const inputVariants = tv({
-  base: "input file:border-0 bg-gray-100 file:text-sm file:font-medium",
+  base: "input file:border-0 bg-background file:text-sm file:font-medium",
   variants: {
     size: {
       sm: "input-sm",

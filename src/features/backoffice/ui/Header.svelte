@@ -4,7 +4,7 @@
   import { cn } from '$lib/utils';
 </script>
 
-<header class="flex justify-between items-center sticky top-0 py-2 px-4 bg-neutral-950 z-10 shadow-lg">
+<header class="flex justify-between items-center sticky top-0 py-2 px-4 bg-background z-10 shadow-lg">
   <div class="flex w-full justify-between items-center">
     <div class="flex shrink-0 items-center gap-3 ml-2">
       <img src={logo} alt="Raamatupidamiskeskus logo" width={32} height={32} />

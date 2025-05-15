@@ -20,7 +20,7 @@
     <p class="text-muted-foreground">Select your company to start using our platform</p>
     <div class="flex flex-col gap-4">
       {#each companyList as company}
-        <a href={`/${lang}/in/${company.id}`} class="flex gap-4 justify-between items-center rounded-md bg-neutral-900 hover:bg-neutral-800 text-neutral-700 hover:text-foreground transition-colors duration-300 p-4 text-foreground !no-underline truncate">
+        <a href={`/${lang}/in/${company.id}`} class="flex gap-4 justify-between items-center rounded-md bg-background hover:bg-background/50 text-neutral-700 hover:text-foreground transition-colors duration-300 p-4 text-foreground no-underline! truncate">
           <span class="truncate grow">{company.name}</span>
           <ArrowRightIcon size={20} class="shrink-0" />
         </a>

@@ -38,9 +38,9 @@
 
   $: strengthResult = checkPasswordStrength(password);
   $: strengthColor = 
-    strengthResult.score < 40 ? 'bg-error-500' :  // red
-    strengthResult.score < 80 ? 'bg-warning-500' :  // orange
-    'bg-success-500';  // green
+    strengthResult.score < 40 ? 'bg-destructive' :  // red
+    strengthResult.score < 80 ? 'bg-warning' :  // orange
+    'bg-success';  // green
 </script>
 
 <div class="mt-3">
