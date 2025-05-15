@@ -11,7 +11,7 @@
   // console.log("companyList :: ", $companyStore)
 </script>
 
-<aside class={"sticky top-14 h-full flex flex-col p-3 bg-neutral-900 rounded-xl max-w-xs gap-6 items-start justify-between transition-all duration-300 w-64"}>
+<aside class={"sticky top-14 h-full flex flex-col p-3 bg-surface rounded-xl max-w-xs gap-6 items-start justify-between transition-all duration-300 w-64"}>
   {#if companyList.length}
     <SelectCompanyDropdown />
   {:else}
@@ -38,10 +38,10 @@
 
 <style lang="postcss">
   .menuLink {
-    @apply flex gap-2 items-center text-neutral-500 relative hover:bg-neutral-800/50 px-4 py-2 no-underline text-md rounded-md transition-colors duration-300;
+    @apply flex gap-2 items-center text-foreground/70 relative hover:bg-surface px-4 py-2 no-underline text-md rounded-md transition-colors duration-300;
     &.active {
-      @apply bg-neutral-800;
-      @apply text-neutral-100;
+      @apply bg-surface;
+      @apply text-foreground;
     }
   }
 </style>

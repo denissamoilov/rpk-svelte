@@ -8,7 +8,7 @@
 </script>
 
 <AvatarPrimitive.Fallback
-	class={cn("border border-neutral-800 bg-muted flex h-full w-full items-center justify-center rounded-full text-sm font-bold", className)}
+	class={cn("border border-border bg-muted flex h-full w-full items-center justify-center rounded-full text-sm font-bold", className)}
 	{...restProps}
 >
 	<span>{@render children?.()}</span>

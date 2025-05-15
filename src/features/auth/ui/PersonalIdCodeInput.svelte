@@ -47,11 +47,11 @@
     data-invalid={!isValid}
   >
     {#snippet append()}
-      <div class="text-sm text-neutral-500 border-l border-neutral-800 pl-2">{counter}</div>
+      <div class="text-sm text-neutral-500 border-l border-border pl-2">{counter}</div>
     {/snippet}
   </Input>
 
   {#if !isValid && value.length > 0}
-    <p class="text-sm text-error-500">{validationMessage}</p>
-{/if}
+    <p class="text-sm text-destructive">{validationMessage}</p>
+  {/if}
 </div>

@@ -14,7 +14,7 @@ const Input = SelectPrimitive.Input;
 const Value = SelectPrimitive.Value;
 
 const selectVariants = tv({
-  base: "shrink-0 text-md input aria-[invalid]:border-destructive data-[placeholder]:[&>span]:text-muted-foreground flex items-center justify-between [&>span]:line-clamp-1",
+  base: "shrink-0 text-md input aria-[invalid]:border-destructive data-placeholder:[&>span]:text-muted-foreground flex items-center justify-between [&>span]:line-clamp-1",
   variants: {
     size: {
       sm: "input-sm",
