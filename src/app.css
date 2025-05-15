@@ -20,6 +20,10 @@
 
   --color-muted: var(--muted);
   --color-subtle: var(--subtle);
+  --color-destructive: var(--destructive);
+  --color-warning: var(--warning);
+  --color-success: var(--success);
+  --color-info: var(--info);
 
   --color-border: var(--border);
   --color-input: var(--input);
@@ -132,6 +136,12 @@
   /* Link */
   /* #005aa8 */
   --link: oklch(0.58 0.1453 253.23);
+
+  /* Alerts */
+  --destructive: oklch(0.46 0.1834 24.97);
+  --warning: oklch(0.93 0.195089 103.2532);
+  --success: oklch(0.6 0.1588 151.84);
+  --info: oklch(0.47 0.1447 252.87);
 
   /* Border */
   --border: oklch(calc(var(--bg-l) - 0.1) var(--bg-c) var(--bg-h));
