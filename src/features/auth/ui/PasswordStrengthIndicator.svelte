@@ -44,13 +44,13 @@
 </script>
 
 <div class="mt-3">
-  <div class="h-1 bg-gray-200 rounded-full overflow-hidden">
+  <div class="h-1 bg-border/50 rounded-full overflow-hidden">
     <div
-        class="h-full transition-all duration-300 {strengthColor}"
+        class="h-full transition-all duration-300 rounded-full {strengthColor}"
         style="width: {strengthResult.score}%;"
     ></div>
   </div>
-  <p class="text-sm mt-1" style="color: {strengthColor}">
+  <p class="text-sm mt-1 text-muted">
     {strengthResult.feedback}
   </p>
 </div>
