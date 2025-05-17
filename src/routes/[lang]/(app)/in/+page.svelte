@@ -32,7 +32,7 @@
   {:else}
     <h1 class="text-heading-1">Select your company</h1>
     <p class="text-muted text-md">Select your company to start using our platform</p>
-    <Select currentValue={undefined} size="lg" placeholder="Select your company" options={companyOptions} onChangeHandle={changeCompany} />
+    <Select currentValue={undefined} size="md" placeholder="Select your company" options={companyOptions} onChangeHandle={changeCompany} />
     <Separator label="Or" class="my-2" />
     <Button
       leftIcon={PlusIcon}

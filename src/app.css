@@ -192,7 +192,7 @@
     @apply w-full bg-input border border-border transition-colors placeholder:text-subtle disabled:cursor-not-allowed disabled:border-border/75 disabled:bg-border/15;
   }
   .input-xs {
-    @apply h-8 text-sm px-2 rounded gap-1;
+    @apply h-8 text-sm px-2 rounded-sm gap-1;
   }
   .input-sm {
     @apply h-10 text-md px-4 rounded-sm gap-1;

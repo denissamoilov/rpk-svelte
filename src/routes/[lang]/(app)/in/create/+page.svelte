@@ -3,6 +3,6 @@
 </script>
 
 <div class="flex flex-col gap-6 max-w-md m-auto">
-  <h1 class="heading-1">Add new company</h1>
+  <h1 class="text-heading-1">Add new company</h1>
   <CompanyCreateForm />
 </div>

@@ -50,15 +50,15 @@
   ];
 </script>
 
-<div class="flex flex-col gap-6">
-  <div class="flex items-center justify-between">
-    <div>
-      <h1 class="heading-1">Sales</h1>
-      <p class="text-muted-foreground">Manage your sales invoices, orders, and transactions</p>
+<div class="flex flex-col gap-6 py-2">
+  <div class="flex flex-col items-start justify-between">
+    <div class="flex w-full justify-between items-center gap-2">
+      <h1 class="text-heading-2 mb-2">Sales</h1>
+      <Button leftIcon={PlusIcon} size="xs" variant="outline">
+        New Invoice
+      </Button>
     </div>
-    <Button leftIcon={PlusIcon} variant="outline">
-      New Invoice
-    </Button>
+    <p class="text-muted text-md">Manage your sales invoices, orders, and transactions</p>
   </div>
 
   <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
@@ -70,7 +70,7 @@
           </span>
           {page.title}
         </h5>
-        <p class="text-sm text-muted-foreground">{page.description}</p>
+        <p class="text-sm text-muted">{page.description}</p>
       </div>
     {/each}
   </div>

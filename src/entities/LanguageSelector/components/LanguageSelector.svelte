@@ -5,7 +5,7 @@
   import type { SelectOptionType } from "$lib/types/docs";
   import { GlobeIcon } from "lucide-svelte";
   let currentLanguage: SelectOptionType;
-  export let size: SelectSizeType ="md";
+  export let size: SelectSizeType ="xs";
 
   const unsubscribe = languageStore.subscribe(value => {
     currentLanguage = value;

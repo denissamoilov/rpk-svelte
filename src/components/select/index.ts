@@ -17,6 +17,7 @@ const selectVariants = tv({
   base: "shrink-0 input aria-[invalid]:border-destructive [&_[data-placeholder]]:text-subtle flex items-center justify-between [&>span]:line-clamp-1",
   variants: {
     size: {
+      xs: "input-xs",
       sm: "input-sm",
       md: "input-md",
       lg: "input-lg",

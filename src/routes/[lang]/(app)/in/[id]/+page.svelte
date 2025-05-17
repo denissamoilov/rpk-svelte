@@ -4,9 +4,9 @@
   let company = $derived(data.company);
 </script>
 
-<div>
+<div class="py-2">
   {#if company.company}
-    <h1>{company.company.name}</h1>
+    <h1 class="text-heading-2">{company.company.name}</h1>
     <!-- Add your company dashboard content here -->
   {:else}
     <p>Company not found</p>

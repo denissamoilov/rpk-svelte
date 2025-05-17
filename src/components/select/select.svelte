@@ -6,7 +6,7 @@
   export let options: SelectOptionType[];
   export let currentValue: SelectOptionType | undefined; 
   export let onChangeHandle: (value: SelectOptionType) => void;
-  export let size: "sm" |"md" | "lg" = "md";
+  export let size: "xs" | "sm" |"md" | "lg" = "md";
   export let placeholder: string = "Placeholder";
   export let leftIcon: typeof IconType | null = null;
 
