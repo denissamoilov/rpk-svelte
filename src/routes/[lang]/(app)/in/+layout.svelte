@@ -4,7 +4,6 @@
   import { goto } from '$app/navigation';
   import { page } from '$app/stores';
   import { onMount } from 'svelte';
-  import { Header } from '$features';
   import type { LayoutData } from './$types';
 
   let { data, children } = $props<{ data: LayoutData }>();
@@ -39,11 +38,8 @@
   });
 </script>
 
-<div class="h-dvh flex flex-col">
-  <Header />
-  <div class="flex flex-col flex-1 p-3">
-    <div class="grow flex items-center justify-center">
-      {@render children()}
-    </div>
-  </div>
-</div>
+<!-- <div class="h-dvh flex flex-col"> -->
+  <!-- <div class="grow flex items-center justify-center"> -->
+    {@render children()}
+  <!-- </div> -->
+<!-- </div> -->

@@ -8,14 +8,13 @@
     FileMinusIcon,      // for Credit Notes
     FileTextIcon,       // for Customer Statements
     ChartAreaIcon,     // for Reports
-
   } from "lucide-svelte";
-  import type { ComponentType } from 'svelte';
+  import type { Icon as IconType } from "lucide-svelte";
 
   let subPages: {
     title: string;
     description: string;
-    icon: ComponentType;
+    icon: typeof IconType;
   }[] = [
     {
       title: "Sales Invoices",
@@ -50,10 +49,10 @@
   ];
 </script>
 
-<div class="flex flex-col gap-6 py-2">
-  <div class="flex flex-col items-start justify-between">
+<div class="flex flex-col gap-6">
+  <div class="flex flex-col gap-2 items-start justify-between">
     <div class="flex w-full justify-between items-center gap-2">
-      <h1 class="text-heading-2 mb-2">Sales</h1>
+      <h1 class="text-heading-2">Sales</h1>
       <Button leftIcon={PlusIcon} size="xs" variant="outline">
         New Invoice
       </Button>
@@ -66,7 +65,40 @@
       <div class="p-4 rounded-md border bg-card">
         <h5 class="mb-2 flex items-center gap-3">
           <span class="shrink-0">
-            <svelte:component this={page.icon} size={20} />
+            <page.icon size={20} />
+          </span>
+          {page.title}
+        </h5>
+        <p class="text-sm text-muted">{page.description}</p>
+      </div>
+    {/each}
+    {#each subPages as page}
+      <div class="p-4 rounded-md border bg-card">
+        <h5 class="mb-2 flex items-center gap-3">
+          <span class="shrink-0">
+            <page.icon size={20} />
+          </span>
+          {page.title}
+        </h5>
+        <p class="text-sm text-muted">{page.description}</p>
+      </div>
+    {/each}
+    {#each subPages as page}
+      <div class="p-4 rounded-md border bg-card">
+        <h5 class="mb-2 flex items-center gap-3">
+          <span class="shrink-0">
+            <page.icon size={20} />
+          </span>
+          {page.title}
+        </h5>
+        <p class="text-sm text-muted">{page.description}</p>
+      </div>
+    {/each}
+    {#each subPages as page}
+      <div class="p-4 rounded-md border bg-card">
+        <h5 class="mb-2 flex items-center gap-3">
+          <span class="shrink-0">
+            <page.icon size={20} />
           </span>
           {page.title}
         </h5>

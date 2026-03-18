@@ -1,15 +1,11 @@
 <script lang="ts">
-  import { Button, Separator } from '$components';
+  import { Separator } from '$components';
   import { BookHeartIcon, Building2Icon, CalendarCheckIcon, DatabaseIcon, FileIcon, FileTextIcon, HandshakeIcon, LayoutDashboardIcon, ShoppingCartIcon, WalletCardsIcon } from 'lucide-svelte';
-  import { SelectCompanyDropdown } from '$features';
   import { LanguageSelector } from '$entities/LanguageSelector';
   import { page } from '$app/stores';
-  import { PlusIcon } from 'lucide-svelte';
-  import { companyStore } from '$lib/stores/company';
   import { cn } from '$lib/utils';
+  import logo from '$lib/assets/logo.svg';
   const {lang, id} = $page.params;
-
-  const companyList = $derived($companyStore.companies);
 
   const menuItems = [
     {
@@ -66,15 +62,13 @@
       icon: DatabaseIcon
     }
   ];
-  // console.log("companyList :: ", $companyStore)
 </script>
 
-<aside class={"sticky top-14 h-full flex flex-col p-3 bg-surface rounded-xl max-w-xs gap-6 items-start justify-between transition-all duration-300 w-64"}>
-  {#if companyList.length}
-    <SelectCompanyDropdown size="xs" />
-  {:else}
-    <Button leftIcon={PlusIcon} variant="primary" class="w-full">Add Company</Button>
-  {/if}
+<aside class="sticky top-0 max-h-dvh flex flex-col p-4 bg-surface max-w-xs gap-6 items-start justify-between transition-all duration-300 w-64 border-r border-border">
+  <div class="flex shrink-0 items-center gap-3">
+    <img src={logo} alt="Raamatupidamiskeskus logo" width={32} height={32} />
+    <span class={cn("text-heading-2")}>RPK</span>
+  </div>
   <nav class="w-full flex-1">
     <ul class="flex flex-col gap-1">
       {#each menuItems as item}
