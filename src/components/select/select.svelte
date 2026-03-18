@@ -3,12 +3,21 @@
   import { SelectContent, SelectItem, SelectRoot, SelectTrigger, SelectValue } from ".";
   import type { Icon as IconType } from "lucide-svelte";
 
-  export let options: SelectOptionType[];
-  export let currentValue: SelectOptionType | undefined; 
-  export let onChangeHandle: (value: SelectOptionType) => void;
-  export let size: "xs" | "sm" |"md" | "lg" = "md";
-  export let placeholder: string = "Placeholder";
-  export let leftIcon: typeof IconType | null = null;
+  const { 
+    options, 
+    currentValue, 
+    onChangeHandle, 
+    size = "md", 
+    placeholder = "Placeholder", 
+    leftIcon = null 
+  } = $props<{
+    options: SelectOptionType[];
+    currentValue?: SelectOptionType;
+    onChangeHandle: (value: SelectOptionType) => void;
+    size?: "xs" | "sm" | "md" | "lg";
+    placeholder?: string;
+    leftIcon?: typeof IconType | null;
+  }>();
 
   const Icon = leftIcon;
 </script>
